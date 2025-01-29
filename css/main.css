@@ -604,6 +604,57 @@ input[type=number] {
   }
 }
 
+.popup {
+  display: none;
+  position: fixed;
+  top: 30px;
+  right: 30px; /* Начальное положение за границей экрана */
+  background: white;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  border-radius: 5px;
+  width: 250px;
+  -webkit-transition: right 0.5s ease-in-out;
+  transition: right 0.5s ease-in-out; /* Плавное появление */
+  -webkit-transform: translateX(200px);
+          transform: translateX(200px);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  font-family: var(--font-manrope);
+}
+@media (max-width: 1080px) {
+  .popup {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+}
+
+.popup.show {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  pointer-events: all;
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-content {
+  text-align: center;
+}
+
+.popup button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
 .header {
   padding: 40px 0;
 }
@@ -3822,4 +3873,7 @@ footer .header-action-links a {
   .header__list .header-action-links a {
     font-weight: 700;
   }
+}
+.user__form {
+  position: relative;
 }

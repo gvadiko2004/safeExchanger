@@ -586,3 +586,49 @@ input[type="number"] {
     }
   }
 }
+
+// pop
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 30px;
+  right: 30px; /* Начальное положение за границей экрана */
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  border-radius: 5px;
+  width: 250px;
+  transition: right 0.5s ease-in-out; /* Плавное появление */
+
+  transform: translateX(200px);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+
+  font-family: var(--font-manrope);
+
+  @media (max-width: 1080px) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.popup.show {
+  transform: translateX(0);
+  pointer-events: all;
+  opacity: 1;
+  visibility: visible;
+}
+.popup-content {
+  text-align: center;
+}
+.popup button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

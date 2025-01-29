@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/helpers.php';
 
-$login = $_POST['login'];
+$login = $_POST['email'];
 $password = $_POST['password'];
 
 // Подключаемся к базе данных
