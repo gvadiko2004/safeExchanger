@@ -592,8 +592,6 @@ input[type="number"] {
 .popup {
   display: none;
   position: fixed;
-  top: 30px;
-  right: 30px; /* Начальное положение за границей экрана */
   background: white;
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -602,11 +600,16 @@ input[type="number"] {
   width: 250px;
   transition: right 0.5s ease-in-out; /* Плавное появление */
 
-  transform: translateX(200px);
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
 
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  
   font-family: var(--font-manrope);
 
   @media (max-width: 1080px) {
