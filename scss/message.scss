@@ -1,0 +1,261 @@
+.message {
+  margin-bottom: 80px;
+  color: #fff;
+
+  padding: 40px 0;
+  overflow: hidden;
+
+  @media (max-width: 1080px) {
+    padding: 60px 0 40px 0;
+  }
+
+  @media (max-width: 440px) {
+    padding: 10px 0 30px 0;
+    margin-bottom: 10px;
+  }
+
+  .hero__list-subtitle {
+    line-height: 155%;
+  }
+
+  .content-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+
+    align-items: center;
+
+    @media (max-width: 1080px) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    @media (max-width: 440px) {
+      gap: 20px;
+    }
+  }
+  // .message__inner
+
+  &__inner {
+    background: #141414;
+    border-radius: 24px;
+    padding: 40px;
+    overflow: hidden;
+    position: relative;
+
+    @media (max-width: 440px) {
+      padding: 14px 20px 36px 20px;
+
+      padding: 24px 20px 36px 20px;
+      height: 512px;
+      overflow: hidden;
+    }
+  }
+
+  // .message__content
+
+  &__content {
+    @media (max-width: 440px) {
+      position: relative;
+      z-index: 12;
+    }
+  }
+
+  // .message__content-title
+
+  &__content-title {
+    font-size: clamp(1.125rem, 0.929rem + 0.71vw, 1.5rem);
+    font-weight: 600;
+    font-family: var(--font-unbounded);
+  }
+
+  // .message__content-subtitle
+
+  &__content-subtitle {
+    margin: 32px 0;
+    font-weight: 300;
+    text-decoration: underline;
+    opacity: 0.6;
+
+    @media (max-width: 1080px) {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      font-weight: 400;
+    }
+  }
+
+  // .message__list
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  // .message__content-send
+
+  &__content-send {
+  }
+
+  // .message__logo
+
+  &__logo {
+    position: relative;
+
+    @media (max-width: 1080px) {
+    }
+
+    @media (max-width: 440px) {
+      position: absolute;
+    bottom: -100px;
+    opacity: 0.6;
+    }
+
+    .logo-message {
+      width: 240px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+
+      @media (max-width: 1080px) {
+        min-width: 160px;
+      }
+
+      @media (max-width: 440px) {
+        min-width: 80px;
+      }
+    }
+  }
+}
+
+.message__list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.bg-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 400px;
+
+  .bg-circle-item {
+    display: block;
+    position: absolute;
+    background: rgb(218, 218, 218);
+    background: linear-gradient(
+      108deg,
+      rgba(218, 218, 218, 1) 0%,
+      rgba(52, 52, 52, 1) 100%
+    );
+    opacity: 0.3;
+    border-radius: 10000px;
+    animation: blink 1.5s ease-in-out infinite, scaleUp 1.5s ease-in-out infinite;
+
+    &:nth-child(1) {
+      width: 350px;
+      height: 350px;
+      animation-delay: 0s;
+
+      @media (max-width: 1080px) {
+        width: 250px;
+        height: 250px;
+      }
+
+      @media (max-width: 440px) {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    &:nth-child(2) {
+      width: 500px;
+      height: 500px;
+      animation-delay: 0.25s;
+
+      @media (max-width: 1080px) {
+        width: 350px;
+        height: 350px;
+      }
+
+      @media (max-width: 440px) {
+        width: 220px;
+        height: 220px;
+      }
+    }
+
+    &:nth-child(3) {
+      width: 650px;
+      height: 650px;
+      animation-delay: 0.5s;
+
+      @media (max-width: 1080px) {
+        width: 450px;
+        height: 450px;
+      }
+
+      @media (max-width: 440px) {
+        width: 310px;
+        height: 310px;
+      }
+    }
+  }
+}
+
+// Анімація мігання (зміна прозорості)
+@keyframes blink {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6; // Прозорість змінюється до 0.6
+  }
+}
+
+// Анімація збільшення (scale)
+@keyframes scaleUp {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05); // Збільшення на 5%
+  }
+}
+
+
+.hero__list-subtitle {
+  font-size: clamp(0.75rem, 0.685rem + 0.24vw, 0.875rem);
+  max-width: 375px;
+}
+
+.message__content-send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 32px;
+  background: linear-gradient(
+    86deg,
+    rgb(95, 207, 229) 0%,
+    rgb(27, 126, 143) 100%
+  );
+  border-radius: 100px;
+  color: #fff;
+  font-weight: 700;
+  margin-top: 32px;
+  max-width: 420px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 440px) {
+    padding: 16px 0;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+}

@@ -1,0 +1,588 @@
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Regular.woff2") format("woff2");
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-ExtraLight.woff2") format("woff2");
+  font-weight: 200;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Medium.woff2") format("woff2");
+  font-weight: 500;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-ExtraBold.woff2") format("woff2");
+  font-weight: bold;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Light.woff2") format("woff2");
+  font-weight: 300;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Bold.woff2") format("woff2");
+  font-weight: bold;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Unbounded";
+  src: url("../fonts/Unbounded-ExtraBold.woff2") format("woff2");
+  font-weight: bold;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Unbounded";
+  src: url("../fonts/Unbounded-Black.woff2") format("woff2");
+  font-weight: 900;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Unbounded";
+  src: url("../fonts/Unbounded-Bold.woff2") format("woff2");
+  font-weight: bold;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Unbounded";
+  src: url("../fonts/Unbounded-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Unbounded";
+  src: url("../fonts/Unbounded-ExtraLight.woff2") format("woff2");
+  font-weight: 200;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Unbounded";
+  src: url("../fonts/Unbounded-Medium.woff2") format("woff2");
+  font-weight: 500;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Unbounded";
+  src: url("../fonts/Unbounded-Light.woff2") format("woff2");
+  font-weight: 300;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Unbounded";
+  src: url("../fonts/Unbounded-Regular.woff2") format("woff2");
+
+  font-display: swap;
+}
+
+:root {
+  // COLOR
+  --primary-gradient: linear-gradient(
+      90deg,
+      rgba(126, 165, 233, 1) 0%,
+      rgba(18, 174, 214, 1) 100%
+    )
+    rgb(126, 165, 233);
+
+  --primaru-color: #457ddf;
+
+  // FONT SIZE
+
+  /* FONT FAMILY */
+  --font-unbounded: "Unbounded";
+  --font-manrope: "Manrope";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.2s ease-in-out;
+
+  font-family: var(--font-manrope);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffffcb;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+.wrapper {
+  overflow-x: hidden;
+}
+
+.list-reset {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.btn-reset {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+
+  @media (min-width: 1280px) {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.input-reset {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+// Custom
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @media (max-width: 440px) {
+    padding: 0 12px;
+  }
+}
+
+.icon-logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  .end {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  // .icon__logo-title
+
+  .icon__logo-title {
+    font-family: var(--font-unbounded);
+    background: linear-gradient(
+      146deg,
+      rgba(95, 207, 229, 1) 0%,
+      rgba(15, 85, 97, 1) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1;
+  }
+
+  // .icon__logo-slogan
+
+  .icon__logo-slogan {
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1;
+    font-size: 10px;
+  }
+}
+
+/* Для большинства современных браузеров */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Для Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+// cir-img
+.cir {
+  pointer-events: none !important;
+}
+
+.cir-img {
+  position: absolute;
+  top: -90%;
+  left: -40%;
+  opacity: 0.8;
+  z-index: 1;
+
+  @media (max-width: 440px) {
+    top: -34%;
+  }
+}
+
+.cir-img-2 {
+  position: absolute;
+  bottom: -100%;
+  right: -50%;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  font-size: clamp(1rem, 0.476rem + 1.9vw, 2rem);
+  font-weight: 400;
+  font-family: var(--font-unbounded);
+
+  @media (max-width: 440px) {
+    gap: 12px;
+  }
+
+  .sep-line {
+    display: inline-block;
+    width: 100%;
+    background-color: #000;
+    height: 1px;
+    position: relative;
+    top: 4px;
+
+    @media (max-width: 440px) {
+      top: 1px;
+    }
+  }
+}
+
+.service-title {
+  flex-direction: row-reverse;
+}
+
+// carousel
+
+.carousel {
+  margin: 0 auto;
+  padding: 20px 0;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+
+  margin-bottom: 40px;
+
+  img {
+    opacity: 0.6;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 440px) {
+    margin-bottom: 20px;
+  }
+}
+
+.carousel {
+  > * {
+    flex: 0 0 64%;
+
+    @media (max-width: 1920px) {
+      flex: 0 0 100%;
+    }
+
+    @media (max-width: 1280px) {
+      flex: 0 0 180%;
+    }
+
+    @media (max-width: 768px) {
+      flex: 0 0 300%;
+    }
+
+    @media (max-width: 440px) {
+      flex: 0 0 300%;
+    }
+  }
+}
+
+/* Группируем карты для лучшей структуры. */
+.group {
+  display: flex;
+  gap: 40px;
+  /* Добавляем отступ справа, чтобы создать зазор между последней и первой картой. */
+  padding-right: 20px;
+
+  @media (max-width: 440px) {
+    gap: 20px;
+  }
+}
+
+.group {
+  will-change: transform; /* Мы должны быть добры к браузеру - пусть он знает, что мы будем анимировать. */
+  animation: scrolling 50s linear infinite;
+}
+
+@keyframes scrolling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.location-text {
+  font-family: var(--font-unbounded) !important;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+  line-height: 135% !important;
+}
+
+.loc-title {
+  flex-direction: row-reverse;
+}
+
+.btn-blue {
+  background: linear-gradient(
+    146deg,
+    rgb(95, 207, 229) 0%,
+    rgb(15, 85, 97) 100%
+  );
+  font-family: var(--font-manrope);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 20px 32px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: #fff;
+  font-family: var(--font-manrope);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mobile-country-list_countryName_text {
+  font-family: var(--font-unbounded) !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 440px) {
+  .currency span {
+    position: relative;
+    left: 40px;
+  }
+}
+
+.pay-info-currencys-valut-span {
+  @media (max-width: 440px) {
+    margin-top: 4px;
+    display: block;
+  }
+}
+
+.wrapper {
+  &.actives {
+    transition: none;
+    filter: blur(10px);
+  }
+}
+
+.form-content-cryptos-btn {
+  height: 60px;
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+//
+
+.user__form-war {
+  background: linear-gradient(
+    86deg,
+    rgb(95, 207, 229) 0%,
+    rgb(27, 126, 143) 100%
+  );
+  -webkit-background-clip: text; /* Для браузеров, поддерживающих WebKit */
+  background-clip: text;
+  color: transparent; /* Делаем текст прозрачным, чтобы градиент был виден */
+
+  font-size: 16px;
+  margin-top: 10px;
+  display: block;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+.btn-save-me {
+  cursor: pointer !important;
+}
+
+.inp-repeat {
+  border: 1px solid #1b7e8f !important;
+
+  &::placeholder {
+    color: #1b7e8f !important;
+  }
+}
+
+.user-form {
+  position: relative;
+}
+
+.form-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0.08;
+  max-width: 80%;
+  width: 500px;
+
+  @media (max-width: 1080px) {
+    width: 300px;
+  }
+
+  @media (max-width: 440px) {
+    width: 400px;
+  }
+}
+
+.user__form-inputs {
+  position: relative;
+  z-index: 22;
+}
+
+.user-panel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.end-user-panel {
+  .bottom {
+    display: flex;
+    flex-direction: column;
+
+    .user-panel-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .user-panel-mail {
+      font-size: 12px;
+    }
+  }
+
+  .icon {
+    background: linear-gradient(
+      86deg,
+      rgb(95, 207, 229) 0%,
+      rgb(27, 126, 143) 100%
+    );
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      fill: #fff;
+    }
+  }
+}
+
+.header__list {
+  .header-action-links {
+    display: none;
+  }
+
+  @media (max-width: 1080px) {
+    .header-action-links {
+      display: flex;
+    }
+  }
+}
