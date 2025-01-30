@@ -21,7 +21,7 @@
         <div class="container">
           <div class="header__inner">
             <div class="start">
-              <a href="./index.html" class="icon-logo">
+              <a href="./user-panel.php" class="icon-logo">
                 <div class="start">
                   <img src="./images/logo.png" width="60" alt="logo" />
                 </div>
@@ -66,7 +66,7 @@
 
                  <div class="bottom">
                  <span class="user-panel-name">ACHIE</span>
-                 <span class="user-panel-mail">archilbigvava@gmail.com</span>
+                 <span class="user-panel-mail"></span>
                  </div>
 </a>
             </div>
@@ -102,7 +102,7 @@
         <div class="container">
           <div class="footer__inner">
             <div class="start">
-              <a href="#!" class="icon-logo">
+              <a href="./user-panel.php" class="icon-logo">
                 <div class="start">
                   <img src="./images/logo.png" width="60" alt="logo" />
                 </div>

@@ -17,20 +17,20 @@ async function fetchCryptoPrices() {
 
   cryptos = [
     {
-      name: "Tether TRC20",
+      name: "USDT TRC20",
       price: data.tether?.rub ? data.tether.rub * 1.042 : 0,
       image: "./images/trc20.svg",
       cashForTransit: "TNX3LHH96H7VotNrL9ETD3CSQkLkcgJ9a8",
       cashForTransitPhoto: "./images/trc20-qr.png",
     },
     {
-      name: "Tether SOL",
+      name: "USDT SOL",
       price: data.tether?.rub ? data.tether.rub * 1.042 : 0,
       image: "./images/trc20.svg",
       cashForTransit: "9NB7pzRTKirmC7m1dpKbH3jknJDJj1aidT4UNMKb9T1v",
     },
     {
-      name: "Tether BNB",
+      name: "USDT BNB",
       price: data.tether?.rub ? data.tether.rub * 1.042 : 0,
       image: "./images/trc20.svg",
       cashForTransit: "0x67487417f168df08146DB7EaaBDB32bD7A479C3e",
@@ -72,12 +72,12 @@ async function fetchCryptoPrices() {
       image: "./images/doge.svg",
       cashForTransit: "DKNnyp2SMYJGPsZkY5dKPXEn1e4LdpFYVv",
     },
-    {
-      name: "Tonecoin TON",
-      price: data.toncoin?.rub ? data.toncoin.rub * 1.042 : 0,
-      image: "./images/ton.svg",
-      cashForTransit: "UQDDQ-FvZ6t_fQ_rpY4_muGaQ9nyIUgldxrBFPQSIkdyT5xJ",
-    },
+    // {
+    //   name: "Tonecoin TON",
+    //   price: data.toncoin?.rub ? data.toncoin.rub * 1.042 : 0,
+    //   image: "./images/ton.svg",
+    //   cashForTransit: "UQDDQ-FvZ6t_fQ_rpY4_muGaQ9nyIUgldxrBFPQSIkdyT5xJ",
+    // },
   ];
 }
 
@@ -186,8 +186,8 @@ if (changeSellContainer) {
     { name: "ВТБ RUB", image: "./images/b4.png" },
     { name: "Альфа-Банк RUB", image: "./images/b5.svg" },
     { name: "Тинькофф RUB", image: "./images/b6.png" },
-    { name: "Наличные USD", image: "./images/наличные.png" },
-    { name: "Наличные EUR", image: "./images/eur.png" },
+    // { name: "Наличные USD", image: "./images/наличные.png" },
+    // { name: "Наличные EUR", image: "./images/eur.png" },
   ];
 
   let selectedCryptoSell = cryptosForSell[0];

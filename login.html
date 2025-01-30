@@ -153,52 +153,40 @@
               </svg>
             </div> -->
 
-            <form action="./login.html" class="user__form-inputs log-in">
+            <form action="./src/login.php" method="post" class="user__form-inputs log-in">
               <div class="user__form-content">
-                <span class="user__form-subtitle">E-mail</span>
-                <input
-                  type="email"
-                  placeholder="example@gmail.com"
-                  class="user__form-input input-reset"
-                  name="email"
-                  required
-                />
+                  <span class="user__form-subtitle">E-mail</span>
+                  <input type="email" placeholder="example@gmail.com" class="user__form-input input-reset" name="email" required />
               </div>
-
+          
               <div class="user__form-content">
-                <span class="user__form-subtitle">Пароль</span>
-                <input
-                  type="password"
-                  placeholder="*********"
-                  class="user__form-input input-reset"
-                  name="password"
-                  required
-                />
+                  <span class="user__form-subtitle">Пароль</span>
+                  <input type="password" placeholder="*********" class="user__form-input input-reset" name="password" required />
               </div>
-
+          
               <div class="user__form-action">
-                <label class="btn-save-me">
-                  <input type="checkbox" />
-                  <span>Запомнить меня</span>
-                </label>
-
-                <button class="btn-reset btn-forgot-pass">Забыл пароль</button>
+                  <label class="btn-save-me">
+                      <input type="checkbox" />
+                      <span>Запомнить меня</span>
+                  </label>
+          
+                  <button class="btn-reset btn-forgot-pass">Забыл пароль</button>
               </div>
-
+          
               <button type="submit" class="btn-reset form__btn">Войти</button>
-
+          
               <div class="sign-in-help">
-                <span>Войти с помощью</span>
-
-                <ul class="list-reset">
-                  <li>
-                    <a href="#!">
-                      <img src="./images/google.svg" alt="" />
-                    </a>
-                  </li>
-                </ul>
+                  <span>Войти с помощью</span>
+                  <ul class="list-reset">
+                      <li>
+                          <a href="#!">
+                              <img src="./images/google.svg" alt="" />
+                          </a>
+                      </li>
+                  </ul>
               </div>
-            </form>
+          </form>
+          
 
             <img src="./images/logo.png" class="form-logo" alt="">
           </div>
@@ -278,6 +266,55 @@
             window.scrollTo(0, 0);
           }
         });
+    </script>
+
+    <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.querySelector(".user__form-inputs.log-in");
+
+    if (loginForm) {
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Останавливаем стандартную отправку формы
+
+            let formData = new FormData(loginForm);
+
+            fetch("./src/login.php", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    sessionStorage.setItem("userEmail", formData.get("email"));
+                    showPopup("Авторизация успешна!", "success"); // Показываем зеленый попап
+
+                    setTimeout(() => {
+                        window.location.href = data.redirect; // Перенаправляем в кабинет
+                    }, 2000);
+                } else {
+                    showPopup(data.message, "error"); // Показываем красный попап с ошибкой
+                }
+            })
+            .catch(error => console.error("Ошибка:", error));
+        });
+    }
+
+    // Функция для показа попапа
+    function showPopup(message, type) {
+        let popup = document.createElement("div");
+        popup.className = `custom-popup ${type}`;
+        popup.textContent = message;
+
+        document.body.appendChild(popup);
+
+        setTimeout(() => {
+            popup.remove();
+        }, 2000);
+    }
+});
+
+
     </script>
   </body>
 </html>

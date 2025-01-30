@@ -160,26 +160,16 @@
                 </p>
               </div>
 
-              <!-- <div class="user__form-content">
-                <span class="user__form-subtitle">Повторите праоль</span>
+              <div class="user__form-content">
+                <span class="user__form-subtitle">Повторите пароль</span>
                 <input
                   type="password"
                   placeholder="*********"
                   class="user__form-input input-reset"
+                  name="password-repeat"
                   required
                 />
-              </div> -->
-
-              <!-- <div class="user__form-action">
-                <label class="btn-save-me">
-                  <input type="checkbox" />
-                  <span>Запомнить меня</span>
-                </label>
-
-                <button class="btn-reset btn-forgot-pass">
-                  Забыл пароль
-                </button>
-              </div> -->
+              </div>
 
               <button type="submit" class="btn-reset form__btn">
                 Зарегистрироваться!
@@ -209,6 +199,9 @@
           </div>
         </div>
       </main>
+
+<!-- Контейнер для попапов -->
+<div id="popup-container"></div>
 
       <footer class="footer">
         <div class="container">
@@ -312,58 +305,79 @@
     <div class="overlay"></div>
 
     <script>
-      document
-        .querySelector(".btn-open")
-        .addEventListener("click", function () {
-          const headerList = document.querySelector(".header__list");
-          const isActive = headerList.classList.contains("active");
-
-          // Переключаем класс и состояние overflow
-          headerList.classList.toggle("active");
-          document.body.style.overflow = isActive ? "visible" : "hidden";
-
-          // Прокручиваем страницу до верха, если открыто меню
-          if (!isActive) {
-            window.scrollTo(0, 0);
+      document.addEventListener("DOMContentLoaded", function () {
+          const registerForm = document.querySelector(".user__form-inputs.log-in");
+      
+          if (registerForm) {
+              registerForm.addEventListener("submit", function (event) {
+                  event.preventDefault(); // Останавливаем стандартную отправку формы
+      
+                  // Получаем значения из формы
+                  const email = document.querySelector("input[name='email']").value;
+                  const password = document.querySelector("input[name='password']").value;
+                  const passwordRepeat = document.querySelector("input[name='password-repeat']").value;
+      
+                  // Проверка на совпадение паролей
+                  if (password !== passwordRepeat) {
+                      // Показываем только кастомный попап
+                      showPopup("Пароли не совпадают!", "error");
+                      return;
+                  }
+      
+                  // Если пароли совпадают, отправляем данные формы на сервер
+                  const formData = new FormData();
+                  formData.append('email', email);
+                  formData.append('password', password);
+                  formData.append('password-repeat', passwordRepeat);
+      
+                  fetch("./src/reg.php", {
+                      method: "POST",
+                      body: formData,
+                  })
+                  .then(response => response.json())
+                  .then(data => {
+                      if (data.success) {
+                          showPopup(data.message, data.type); // Показываем кастомный попап с успехом
+                          setTimeout(() => {
+                              window.location.href = data.redirect; // Редирект на страницу входа через 2 секунды
+                          }, 2000);
+                      } else {
+                          // Показываем кастомный попап с ошибкой
+                          showPopup(data.message, data.type);
+                      }
+                  })
+                  .catch(error => {
+                      // Показываем кастомный попап с ошибкой
+                      showPopup("Произошла ошибка. Попробуйте снова.", "error");
+                      console.error("Ошибка:", error);
+                  });
+              });
           }
-        });
-    </script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-      document.querySelector(".user__form-inputs").addEventListener("submit", function (event) {
-          event.preventDefault(); // Остановить стандартную отправку формы
-  
-          var formData = new FormData(this);
-  
-          fetch("./src/reg.php", {
-              method: "POST",
-              body: formData,
-          })
-          .then(response => response.json()) // Ожидаем JSON-ответ
-          .then(data => {
-              let popup = document.getElementById("popupMessage");
-              document.getElementById("popupText").innerText = data.message;
-              popup.classList.add("show"); // Добавляем класс для анимации
-              popup.style.display = "block";
-  
-              setTimeout(() => {
-                  popup.classList.remove("show"); // Убираем через 4 секунды
-                  setTimeout(() => {
-                      popup.style.display = "none";
-                  }, 500);
-              }, 4000);
-  
-              if (data.success) {
-                  setTimeout(() => {
-                      window.location.href = "../user-panel.php"; // Перенаправление через 2 сек
-                  }, 2000);
-              }
-          })
-          .catch(error => console.error("Ошибка:", error));
       });
-  });
-  </script>
+      
+      // Функция для отображения кастомного попапа
+      function showPopup(message, type) {
+          // Убедимся, что кастомный попап только один
+          const existingPopup = document.querySelector(".custom-popup");
+          if (existingPopup) {
+              existingPopup.remove(); // Убираем предыдущий попап, если он есть
+          }
+      
+          // Создаем новый попап
+          const popup = document.createElement("div");
+          popup.classList.add("custom-popup", type); // Добавляем класс для типа (ошибка или успех)
+          popup.textContent = message; // Добавляем текст сообщения
+      
+          // Добавляем попап в контейнер
+          document.getElementById("popup-container").appendChild(popup);
+      
+          // Убираем попап через 2 секунды
+          setTimeout(() => {
+              popup.remove();
+          }, 2000);
+      }
+      </script>
+      
   
   
   </body>

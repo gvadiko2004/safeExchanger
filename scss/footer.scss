@@ -212,3 +212,112 @@ footer {
 .user__form {
   position: relative;
 }
+
+.header .icon__logo-title {
+  @media (max-width: 440px) {
+    font-size: 12px;
+  }
+}
+
+.header__inner .end-logo {
+  @media (max-width: 440px) {
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
+.end-user-panel .bottom {
+  @media (max-width: 440px) {
+    display: none;
+  }
+}
+
+.header__list {
+  .bottom-reg {
+    display: none;
+
+    @media (max-width: 1080px) {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .user-panel {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.bottom-reg-panel {
+  .icon {
+    background: linear-gradient(
+      86deg,
+      rgb(95, 207, 229) 0%,
+      rgb(27, 126, 143) 100%
+    );
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+    svg {
+      fill: #fff;
+    }
+  }
+}
+
+.bottom-reg-panel {
+  display: none;
+
+  @media (max-width: 1080px) {
+    display: flex;
+    align-items: center;
+    gap: 14px !important;
+    transform: scale(0.8);
+  }
+}
+
+.user-panel {
+  @media (max-width: 1080px) {
+    display: none;
+  }
+}
+
+.user-panel-mail {
+  font-weight: 500;
+}
+
+.logout {
+  color: red;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 10px;
+
+  display: none;
+  text-decoration: underline;
+
+  @media (max-width: 1080px) {
+    display: block;
+  }
+}
+
+.header__list .bottom-reg-panel {
+  display: none !important;
+
+  @media (max-width: 1080px) {
+    display: flex !important;
+    align-items: center;
+    gap: 14px !important;
+    transform: scale(0.8);
+  }
+}

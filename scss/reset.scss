@@ -486,7 +486,7 @@ input[type="number"] {
   display: block;
 
   @media (max-width: 768px) {
-    font-size: 12px;
+    font-size: 11px;
   }
 }
 
@@ -614,12 +614,14 @@ input[type="number"] {
 
   @media (max-width: 1080px) {
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   }
 }
 .popup.show {
-  transform: translateX(0);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   pointer-events: all;
   opacity: 1;
   visibility: visible;
@@ -634,4 +636,40 @@ input[type="number"] {
   color: white;
   border: none;
   cursor: pointer;
+}
+
+
+
+// 
+
+.custom-popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  animation: fadeInOut 2s;
+}
+
+/* Красный попап для ошибок */
+.custom-popup.error {
+  background: #ff4d4d;
+}
+
+/* Зеленый попап для успешной авторизации */
+.custom-popup.success {
+  background: #28a745;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
 }

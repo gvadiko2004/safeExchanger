@@ -1,29 +1,44 @@
 <?php
-
 require_once __DIR__ . '/helpers.php';
+session_start();
 
-$login = $_POST['email'];
-$password = $_POST['password'];
+header('Content-Type: application/json'); // Указываем JSON-ответ
+
+// Получаем данные из формы
+$login = isset($_POST['email']) ? trim($_POST['email']) : null;
+$password = isset($_POST['password']) ? trim($_POST['password']) : null;
+
+// Проверка, что email и пароль введены
+if (!$login || !$password) {
+    echo json_encode(["success" => false, "message" => "Введите email и пароль!"]);
+    exit;
+}
 
 // Подключаемся к базе данных
 $connect = getDB();
-
-// Проверка данных в БД
-$sql = "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'";
-
-$result = $connect->query($sql);
-
-// Проверка наличия результатов
-if ($result->num_rows > 0) {
-    // Если пользователь найден
-    echo 'Пользователь найден!';
-} else {
-    // Если пользователя с таким логином и паролем нет
-    echo 'Неверный логин или пароль!';
+if (!$connect) {
+    echo json_encode(["success" => false, "message" => "Ошибка подключения к базе данных!"]);
+    exit;
 }
 
-// Выводим результаты (для отладки)
-while ($row = $result->fetch_assoc()) {
-    print_r($row); // Печатает данные пользователя
+// Проверяем, существует ли пользователь
+$stmt = $connect->prepare("SELECT * FROM `users` WHERE `email` = ?");
+$stmt->bind_param("s", $login);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+
+    if (password_verify($password, $user['password'])) {
+        $_SESSION['email'] = $login;
+
+        echo json_encode(["success" => true, "redirect" => "../user-panel.php"]);
+        exit;
+    } else {
+        echo json_encode(["success" => false, "message" => "Неверный логин или пароль!"]);
+    }
+} else {
+    echo json_encode(["success" => false, "message" => "Неверный логин или пароль!"]);
 }
 ?>

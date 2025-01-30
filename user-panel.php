@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+$email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
+?>
 
 
 <!DOCTYPE html>
@@ -21,7 +24,7 @@
         <div class="container">
           <div class="header__inner">
             <div class="start">
-              <a href="./index.html" class="icon-logo">
+              <a href="./user-panel.php" class="icon-logo">
                 <div class="start">
                   <img src="./images/logo.png" width="60" alt="logo" />
                 </div>
@@ -52,7 +55,27 @@
                 <li class="header__list-item">
                   <a href="#!" class="header__list-link">AML</a>
                 </li>
+
+                <a href="#!" class="user-panel bottom-reg-panel">
+                <div class="icon">
+                   <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                   <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+                   </svg>
+                </div>
+               
+
+                 <div class="bottom bottom-reg">
+                 <span class="user-panel-name">safeXchange</span>
+                 <span class="user-panel-mail"></span>
+                 </div>
+</a>
+
+<button class="btn-reset logout">
+  Выйти
+</button>
               </ul>
+
+              
             </div>
 
             <div class="end end-user-panel">
@@ -65,10 +88,14 @@
                
 
                  <div class="bottom">
-                 <span class="user-panel-name">ACHIE</span>
-                 <span class="user-panel-mail">archilbigvava@gmail.com</span>
+                 <span class="user-panel-name">safeXchange</span>
+                 <span class="user-panel-mail"></span>
                  </div>
 </a>
+
+<button class="btn-reset btn-open">
+                <img width="32" src="./images/btn-open.png" alt="" />
+              </button>
             </div>
           </div>
         </div>
@@ -1136,7 +1163,7 @@
                 </label>
 
                 <a
-                  href="./visa-mastercard.html"
+                  href="./user-change.php"
                   class="btn-reset btn__hero-send btn-submit"
                   id="submitButton"
                   style="opacity: 0.5; pointer-events: none"
@@ -4200,7 +4227,7 @@
         <div class="container">
           <div class="footer__inner">
             <div class="start">
-              <a href="#!" class="icon-logo">
+              <a href="./user-panel.php" class="icon-logo">
                 <div class="start">
                   <img src="./images/logo.png" width="60" alt="logo" />
                 </div>
@@ -4368,5 +4395,19 @@
           window.location.href = "visa-mastercard.html";
         });
     </script>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const userEmail = sessionStorage.getItem("userEmail");
+    if (userEmail) {
+        document.querySelectorAll(".user-panel-mail").forEach(element => {
+            element.textContent = userEmail;
+        });
+    }
+});
+
+    </script>
+
+    
   </body>
 </html>
