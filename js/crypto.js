@@ -10,79 +10,109 @@ let selectedCryptoPut = null;
 let cryptos = [];
 
 async function fetchCryptoPrices() {
-  const response = await fetch(
-    "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,litecoin,ethereum,tether,binancecoin,tron,dogecoin,dai,toncoin&vs_currencies=rub"
-  );
-  const data = await response.json();
+  try {
+    // Показываем лоадер перед загрузкой данных
+    cryptoList.innerHTML = "<p>Загрузка...</p>";
 
-  cryptos = [
-    {
-      name: "USDT TRC20",
-      price: data.tether?.rub ? data.tether.rub * 1.042 : 0,
-      image: "./images/trc20.svg",
-      cashForTransit: "TNX3LHH96H7VotNrL9ETD3CSQkLkcgJ9a8",
-      cashForTransitPhoto: "./images/trc20-qr.png",
-    },
-    {
-      name: "USDT SOL",
-      price: data.tether?.rub ? data.tether.rub * 1.042 : 0,
-      image: "./images/trc20.svg",
-      cashForTransit: "9NB7pzRTKirmC7m1dpKbH3jknJDJj1aidT4UNMKb9T1v",
-    },
-    {
-      name: "USDT BNB",
-      price: data.tether?.rub ? data.tether.rub * 1.042 : 0,
-      image: "./images/trc20.svg",
-      cashForTransit: "0x67487417f168df08146DB7EaaBDB32bD7A479C3e",
-    },
-    {
-      name: "Bitcoin BTC",
-      price: data.bitcoin?.rub ? data.bitcoin.rub * 1.042 : 0,
-      image: "./images/btc.svg",
-      cashForTransit:
-        "bc1pjx67h09udncqpf2lfu6fhf0mst8qw7v98vpfq74pzpnjlh7029sssypfnu",
-    },
-    {
-      name: "Litecoin LTC",
-      price: data.litecoin?.rub ? data.litecoin.rub * 1.042 : 0,
-      image: "./images/ltc.svg",
-      cashForTransit: "ltc1qmvyl8f3xtvse225t74sukew3j98vcwmn9j8vs6",
-    },
-    {
-      name: "Smart Chain BNB",
-      price: data.binancecoin?.rub ? data.binancecoin.rub * 1.042 : 0,
-      image: "./images/bnb.svg",
-      cashForTransit: "0x139284fB0418D814b710896Cf7aA94EFEb39cf29",
-    },
-    {
-      name: "Ethereum ETH",
-      price: data.ethereum?.rub ? data.ethereum.rub * 1.028 : 0,
-      image: "./images/eth.svg",
-      cashForTransit: "0x139284fB0418D814b710896Cf7aA94EFEb39cf29",
-    },
-    {
-      name: "Tron TRX",
-      price: data.tron?.rub ? data.tron.rub * 1.042 : 0,
-      image: "./images/trx.svg",
-      cashForTransit: "TNX3LHH96H7VotNrL9ETD3CSQkLkcgJ9a8",
-    },
-    {
-      name: "Dogecoin DOGE",
-      price: data.dogecoin?.rub ? data.dogecoin.rub * 1.042 : 0,
-      image: "./images/doge.svg",
-      cashForTransit: "DKNnyp2SMYJGPsZkY5dKPXEn1e4LdpFYVv",
-    },
-    // {
-    //   name: "Tonecoin TON",
-    //   price: data.toncoin?.rub ? data.toncoin.rub * 1.042 : 0,
-    //   image: "./images/ton.svg",
-    //   cashForTransit: "UQDDQ-FvZ6t_fQ_rpY4_muGaQ9nyIUgldxrBFPQSIkdyT5xJ",
-    // },
-  ];
+    const response = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,litecoin,ethereum,tether,binancecoin,tron,dogecoin,dai,toncoin&vs_currencies=rub"
+    );
+    
+    if (!response.ok) throw new Error("Ошибка загрузки API");
+    
+    const data = await response.json();
+
+    cryptos = [
+      {
+        name: "USDT TRC20",
+        price: data.tether?.rub ? data.tether.rub * 1.042 : 0,
+        image: "./images/trc20.svg",
+        cashForTransit: "TNX3LHH96H7VotNrL9ETD3CSQkLkcgJ9a8",
+        cashForTransitPhoto: "./images/trc20-qr.png",
+      },
+      {
+        name: "USDT BNB",
+        price: data.tether?.rub ? data.tether.rub * 1.042 : 0,
+        image: "./images/trc20.svg",
+        cashForTransit: "0x67487417f168df08146DB7EaaBDB32bD7A479C3e",
+      },
+      {
+        name: "Bitcoin BTC",
+        price: data.bitcoin?.rub ? data.bitcoin.rub * 1.042 : 0,
+        image: "./images/btc.svg",
+        cashForTransit:
+          "bc1pjx67h09udncqpf2lfu6fhf0mst8qw7v98vpfq74pzpnjlh7029sssypfnu",
+      },
+      {
+        name: "Litecoin LTC",
+        price: data.litecoin?.rub ? data.litecoin.rub * 1.042 : 0,
+        image: "./images/ltc.svg",
+        cashForTransit: "ltc1qmvyl8f3xtvse225t74sukew3j98vcwmn9j8vs6",
+      },
+      {
+        name: "USDT SOL",
+        price: data.tether?.rub ? data.tether.rub * 1.042 : 0,
+        image: "./images/trc20.svg",
+        cashForTransit: "9NB7pzRTKirmC7m1dpKbH3jknJDJj1aidT4UNMKb9T1v",
+      },
+      {
+        name: "Smart Chain BNB",
+        price: data.binancecoin?.rub ? data.binancecoin.rub * 1.042 : 0,
+        image: "./images/bnb.svg",
+        cashForTransit: "0x139284fB0418D814b710896Cf7aA94EFEb39cf29",
+      },
+      {
+        name: "Ethereum ETH",
+        price: data.ethereum?.rub ? data.ethereum.rub * 1.028 : 0,
+        image: "./images/eth.svg",
+        cashForTransit: "0x139284fB0418D814b710896Cf7aA94EFEb39cf29",
+      },
+      {
+        name: "USDT ERC20",
+        price: data.tether?.rub ? data.tether.rub * 1.042 : 0,
+        image: "./images/trc20.svg",
+        cashForTransit: "9NB7pzRTKirmC7m1dpKbH3jknJDJj1aidT4UNMKb9T1v",
+      },
+      {
+        name: "Tron TRX",
+        price: data.tron?.rub ? data.tron.rub * 1.042 : 0,
+        image: "./images/trx.svg",
+        cashForTransit: "TNX3LHH96H7VotNrL9ETD3CSQkLkcgJ9a8",
+      },
+      {
+        name: "Dogecoin DOGE",
+        price: data.dogecoin?.rub ? data.dogecoin.rub * 1.042 : 0,
+        image: "./images/doge.svg",
+        cashForTransit: "DKNnyp2SMYJGPsZkY5dKPXEn1e4LdpFYVv",
+      },
+    ];
+
+    // Обновляем интерфейс после загрузки данных
+    renderCryptoList();
+  } catch (error) {
+    console.error("Ошибка:", error);
+    cryptoList.innerHTML = "<p>Ошибка загрузки данных</p>";
+  }
 }
 
+// Функция отрисовки списка криптовалют
+function renderCryptoList() {
+  cryptoList.innerHTML = ""; // Очищаем старые данные
 
+  cryptos.forEach((crypto) => {
+    let listItem = document.createElement("li");
+    listItem.classList.add("crypto-item");
+    listItem.innerHTML = `
+      <img src="${crypto.image}" alt="${crypto.name}" />
+      <span>${crypto.name}</span>
+      <strong>${crypto.price.toFixed(2)} RUB</strong>
+    `;
+    cryptoList.appendChild(listItem);
+  });
+}
 
+// Вызываем загрузку данных
+fetchCryptoPrices();
 
 
 

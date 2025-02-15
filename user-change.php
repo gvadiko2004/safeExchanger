@@ -9,7 +9,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SafeXchange - Криптообменник</title>
+    <title>SafeExhcanger - Криптообменник</title>
 
     <link rel="stylesheet" href="./css/country.css" />
     <link rel="stylesheet" href="./css/swiper.css" />
@@ -30,8 +30,8 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                 </div>
 
                 <div class="end end-logo">
-                  <h4 class="icon__logo-title">SafeXchange</h4>
-                  <span class="icon__logo-slogan">Exchange for packaging</span>
+                  <h4 class="icon__logo-title">SafeExhcanger</h4>
+                  <span class="icon__logo-slogan">Обмен под защитой</span>
                 </div>
               </a>
 
@@ -53,10 +53,10 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#!" class="header__list-link">AML</a>
+                  <a href="./aml.php" class="header__list-link">AML</a>
                 </li>
 
-                <a href="#!" class="user-panel bottom-reg-panel">
+                <a href="./user-profile.php" class="user-panel bottom-reg-panel">
                 <div class="icon">
                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                    <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
@@ -65,21 +65,21 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                
 
                  <div class="bottom bottom-reg">
-                 <span class="user-panel-name">safeXchange</span>
+                 <span class="user-panel-name">SafeExhcanger</span>
                  <span class="user-panel-mail"></span>
                  </div>
 </a>
 
-<button class="btn-reset logout">
+<a href="./index.html" class="btn-reset logout">
   Выйти
-</button>
+</a>
               </ul>
 
               
             </div>
 
             <div class="end end-user-panel">
-<a href="#!" class="user-panel">
+<a href="./user-profile.php" class="user-panel">
                 <div class="icon">
                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                    <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
@@ -88,7 +88,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                
 
                  <div class="bottom">
-                 <span class="user-panel-name">safeXchange</span>
+                 <span class="user-panel-name">SafeExhcanger</span>
                  <span class="user-panel-mail"></span>
                  </div>
 </a>
@@ -110,12 +110,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 
               <div class="pay-found__content">
                 <h4 class="pay-found__content-septitle">
-                  - Обмен происходит автоматически, после получения 32-го
-                  подтверждения сети Tether TRC20 USDT.
-                </h4>
-                <h4 class="pay-found__content-septitle">
-                  - Среднее время вывода денежных средств на карту составляет от
-                  5 до 60 минут.
+                  - Среднее время вывода денежных средств: от 5 до 60 минут.
                 </h4>
 
                 <div class="pay-found__form">
@@ -132,7 +127,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                         <span
                           class="data-user-input data-user-input-put" id="visa-mastercard-data"
                         ></span>
-                        <span class="data-user-currency">USDT</span>
+                        <span class="data-user-currency data-user-currency-crypto"></span>
                       </div>
 
                       <div class="pay-info-currencys">
@@ -180,7 +175,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                             </span>
 
                             <input
-                              class="input-reset"
+                              class="input-reset inp-form-crypto-input-name"
                               type="text"
                               placeholder="Telegram: @example"
                             />
@@ -192,9 +187,9 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                             </span>
 
                             <input
-                              class="input-reset"
+                              class="input-reset form-crypto-input-cardnumber"
                               type="number"
-                              placeholder="Номер карты *"
+                              placeholder="Номер карты получателя"
                             />
                           </div>
 
@@ -202,7 +197,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                             <span class="form-crypto-input-name"> Почта </span>
 
                             <input
-                              class="input-reset"
+                              class="input-reset form-crypto-input-email"
                               type="email"
                               placeholder="E-mail *"
                             />
@@ -216,19 +211,19 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                             <input
                               class="input-reset"
                               type="number"
-                              placeholder="Номер телефона для перевода по СБП *"
+                              placeholder="Например: +79012345567"
                             />
                           </div>
 
                           <div class="form-crypto-input">
                             <span class="form-crypto-input-name">
-                              Фамилия Имя владельца карты:
+                            Ф.И.О. получателя:
                             </span>
 
                             <input
-                              class="input-reset"
-                              type="number"
-                              placeholder="ФИО *:"
+                              class="input-reset inp-card-user"
+                              type="text"
+                              placeholder="Ф.И.О. владельца карты, полностью"
                             />
                           </div>
                         </div>
@@ -255,10 +250,12 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                                     правилами и регламентами обмена
                                   </span>
                                 </label>
+
                                 
-                                <a href="" class="btn-reset form-content-cryptos-btn" id="submitButtons" style="opacity: 0.5; pointer-events: none;">
+
+                                <span class="btn-reset btn-change-user" style="opacity: 0.6; pointer-events: none;">
                                   Обменять
-                                </a>
+                                </span>
                           </div>
                       </form>
                     </div>
@@ -269,78 +266,188 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
           </div>
         </section>
       </main>
+      
+      
+    <div class="popup-change-user">
+      <button class="btn-reset btn-close-pop-change">
+      <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+</svg>
 
-      <div class="user__form">
-        <div class="user__form-acc">
-          <button class="btn-reset user__form-accbtn active">Войти</button>
-          <button class="btn-reset user__form-accbtn">Регистрация</button>
-        </div>
+<span>Назад</span>
+      </button>
+      <div class="container-xl">
+        <h2 class="popup-change-user-order">Заявка создана</h2>
 
-        <div class="btn-close">
-          <svg
-            class="w-6 h-6 text-gray-800 dark:text-white"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18 17.94 6M18 18 6.06 6"
-            />
-          </svg>
-        </div>
+        <div class="popup-change-user-content">
+          <div class="start start-content">
+            <h4 class="popup-change-user-content-title">Детали по обмену</h4>
 
-        <!-- <form action="" class="user__form-inputs log-in">
-          <div class="user__form-content">
-            <span class="user__form-subtitle">E-mail</span>
-            <input
-              type="email"
-              placeholder="example@gmail.com"
-              class="user__form-input input-reset"
-            />
-          </div>
+            <ul class="popup-change-user-content-list list-reset">
+              <li class="popup-change-user-content-list-item">
+                <span>ID</span>
+                <span class="popup-change-user-content-list-item-id"></span>
+              </li>
 
-          <div class="user__form-content">
-            <span class="user__form-subtitle">Пароль</span>
-            <input
-              type="password"
-              placeholder="*********"
-              class="user__form-input input-reset"
-            />
-          </div>
+              <!-- <li class="popup-change-user-content-list-item">
+                <span>Курс</span>
+                <span class="popup-change-user-content-list-item-course"
+                  >1 : 42.96</span
+                >
+              </li> -->
+            </ul>
 
-          <div class="user__form-action">
-            <label class="btn-save-me">
-              <input type="checkbox" />
-              <span>Запомнить меня</span>
-            </label>
+            <ul class="popup-change-user-content-change list-reset">
+              <li class="popup-change-user-content-change-item">
+                <div class="start">
+                  <h4 class="popup-change-user-content-change-title ix-ctypo">
+                    Отдадите <span></span>
+                  </h4>
 
-            <button class="btn-reset btn-forgot-pass">
-              Восстановить пароль
-            </button>
-          </div>
+                  <span class="popup-change-user-content-change-usdt">
+                    2222 USDT
+                  </span>
+                </div>
 
-          <button type="submit" class="btn-reset form__btn">Войти</button>
-
-          <div class="sign-in-help">
-            <span>Войти с помощью</span>
-
-            <ul class="list-reset">
-              <li>
-                <a href="#!">
-                  <img src="./images/google.svg" alt="" />
-                </a>
+                <div class="end">
+                  <div class="popup-change-user-content-change-icon">
+                    <img src="./images/trc20.svg" alt="">
+                  </div>
+                </div>
               </li>
             </ul>
+
+            <ul
+              class="popup-change-user-content-change popup-change-user-content-bank list-reset"
+            >
+              <li class="popup-change-user-content-change-item">
+                <div class="start">
+                  <h4 class="popup-change-user-content-change-title ix-bank">
+                    Получите <span></span>
+                  </h4>
+
+                  <span class="popup-change-user-content-change-usdt popup-change-user-content-change-usdtt">
+                   
+                  </span>
+                </div>
+
+                <div class="end">
+                  <div class="popup-change-user-content-change-icon popup-change-user-content-change-icbank">
+                    <img src="./images/b1.png" alt="">
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <div class="title-count-send">
+              <h4 class="popup-change-user-content-titles">Номер карты получателя:</h4>
+              <span class="card-number">4441 5423 4665 2553</span>
+            </div>
+
+            <div class="title-count-send">
+              <h4 class="popup-change-user-content-titles">E-mail:</h4>
+              <span class="card-email"></span>
+            </div>
+
+            <div class="title-count-send">
+              <h4 class="popup-change-user-content-titles">Telegram:</h4>
+              <span class="card-telegram"></span>
+            </div>
           </div>
-        </form> -->
+
+          <div class="end end-content">
+           
+
+            <div class="bottom bottom-send">
+              <h2 class="bottom-send-title">Проверьте и подтвердите данные:</h2>
+
+              <div class="bottom-send-content">
+                <div class="bottom-send-content-bank-content bottom-send-content-bank">
+                  <h4 class="bottom-send-content-bank-content-title">Получите</h4>
+
+                  <div class="input">
+                     <div class="start">
+                       <div class="bottom-send-content-bank-acc ixx-bank">
+                         <img src="" alt="">
+   
+                         <span></span>
+                       </div>
+                     </div>
+   
+                     <div class="end">
+                       <h4 class="bottom-send-content-bank-acc-money">
+                       </h4>
+                     </div>
+                  </div>
+                </div>
+
+                <div class="bottom-send-content-bank-content bottom-send-content-card">
+                  <h4 class="bottom-send-content-bank-content-title">Номер карты::</h4>
+
+                  <div class="input">
+                     <div class="end">
+                       <h4 class="bottom-send-content-bank-acc-card">
+                         
+                       </h4>
+                     </div>
+                  </div>
+                </div>
+
+                <div class="bottom-send-content-bank-content bottom-send-content-mail">
+                  <h4 class="bottom-send-content-bank-content-title">E-mail:</h4>
+
+                  <div class="input">
+                     <div class="end">
+                       <h4 class="bottom-send-content-bank-acc-mail">
+                         
+                       </h4>
+                     </div>
+                  </div>
+                </div>
+
+                <div class="bottom-send-content-bank-content bottom-send-content-telegram">
+                  <h4 class="bottom-send-content-bank-content-title">Telegram:</h4>
+
+                  <div class="input">
+                     <div class="end">
+                       <h4 class="bottom-send-content-bank-acc-telegram">
+                         
+                       </h4>
+                     </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bottom-send-content-bank-content  bottom-send-content-bank-user bottom-send-content-bank">
+                  <h4 class="bottom-send-content-bank-content-title">Ф.И.О владельца карты:</h4>
+
+                  <div class="input">
+                     <div class="start">
+                       <div class="bottom-send-content-bank-acc ixx-bank-name">
+                         <span></span>
+                       </div>
+                     </div>
+   
+                     <div class="end">
+                       <h4 class="bottom-send-content-bank-acc-money">
+                       </h4>
+                     </div>
+                  </div>
+                </div>
+
+              <p>
+                С целью противодействия легализации доходов, полученных преступным путем и финансированию терроризма обменные пункты проводят AML-проверки поступающих от клиентов транзакций. В случае, если транзакция будет идентифицирована как высокорискованная, обменный пункт может приостановить обменную операцию до проведения проверки в соответсвии со стандартами FATF.
+              </p>
+            </div>
+
+            <a href="#!" class="btn-reset form-content-cryptos-time form-content-cryptos-btn" id="submitButtons" style="opacity: 0.5; pointer-events: none;">
+                                  Обменять
+</a>
+          </div>
+        </div>
       </div>
+    </div>
+
 
       <footer class="footer">
         <div class="container">
@@ -352,43 +459,35 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                 </div>
 
                 <div class="end">
-                  <h4 class="icon__logo-title">SafeXchange</h4>
+                  <h4 class="icon__logo-title">SafeExhcanger</h4>
                   <span class="icon__logo-slogan">Обмен под защитой</span>
                 </div>
               </a>
             </div>
 
             <div class="center">
-              <ul class="footer__list list-reset">
+            <ul class="footer__list list-reset">
                 <li class="footer__list-item">
-                  <a href="#!" class="footer__list-link">Обмен</a>
+                  <a href="./user-panel.php#header" class="footer__list-link">Обмен</a>
                 </li>
 
                 <li class="footer__list-item">
-                  <a href="#!" class="footer__list-link">Сервисы</a>
+                  <a href="./user-panel.php#service" class="footer__list-link">Сервисы</a>
                 </li>
 
                 <li class="footer__list-item">
-                  <a href="#!" class="footer__list-link">Локации</a>
-                </li>
-
-                <li class="footer__list-item">
-                  <a href="#!" class="footer__list-link">Как это работает?</a>
-                </li>
-
-                <li class="footer__list-item">
-                  <a href="#!" class="footer__list-link">AML</a>
-                </li>
-
-                <div class="header-action-links">
-                  <a href="./login.html" class="btn-reset header__btn active"
-                    >Войти</a
+                  <a href="./user-panel.php#locations-block" class="footer__list-link"
+                    >Локации</a
                   >
-                  <span>|</span>
-                  <a href="./reg.html" class="btn-reset header__btn"
-                    >Регистрация</a
-                  >
-                </div>
+                </li>
+
+                <li class="footer__list-item">
+                  <a href="./user-panel.php#how" class="footer__list-link">Как это работает?</a>
+                </li>
+
+                <li class="footer__list-item">
+                  <a href="./aml.php" class="footer__list-link">AML</a>
+                </li>
               </ul>
             </div>
 
@@ -435,17 +534,16 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                   </a>
                 </li>
               </ul>
-              
-              <div class="header-action-links">
-                <a href="./login.html" class="btn-reset header__btn">Войти</a>
-                <span>|</span>
-                <a href="./reg.html" class="btn-reset header__btn">Регистрация</a>
-              </div>
             </div>
           </div>
         </div>
       </footer>
     </div>
+    <div class="footer-copyright">
+      <p>&copy; 2025 SafeExhcanger. Все права защищены.</p>
+    </div>
+     
+
 
     <script defer src="./js/main.js"></script>
     <script defer src="./js/form.js"></script>
@@ -477,21 +575,38 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
         const payInfoText = document.querySelector(".pay-input-crypto");
         const formContentCryptos = document.querySelector(".form-content-cryptos-btn");
     
-        // Если текст в payInfoText равен "USDT TRC20", изменяем ссылку на change.html
+        // Если текст в payInfoText равен "USDT TRC20", изменяем ссылку на user-pay.php
         if (payInfoText && formContentCryptos) {
-          const cryptoText = payInfoText.textContent.trim();
-          
-          if (cryptoText === "Tether TRC20") {
-            formContentCryptos.setAttribute("href", "change.html");
-            formContentCryptos.style.opacity = "1"; // Делаем кнопку активной
-            formContentCryptos.style.pointerEvents = "auto"; // Включаем клик
-          } else {
-            formContentCryptos.setAttribute("href", "#"); // Не активируем ссылку
-            formContentCryptos.style.opacity = "0.5"; // Делаем кнопку неактивной
-            formContentCryptos.style.pointerEvents = "none"; // Блокируем клик
-          }
-        }
-    
+  const cryptoText = payInfoText.textContent.trim();
+  
+  // Список криптовалют для проверки
+  const validCryptos = [
+    "USDT TRC20",
+    "USDT BNB",
+    "Bitcoin BTC",
+    "Litecoin LTC",
+    "USDT SOL",
+    "Smart Chain BNB",
+    "Ethereum ETH",
+    "USDT ERC20",
+    "Tron TRX",
+    "Dogecoin DOGE"
+  ];
+
+  if (validCryptos.includes(cryptoText)) {
+    formContentCryptos.setAttribute("href", "./user-pay.php");
+    formContentCryptos.style.opacity = "1"; // Делаем кнопку активной
+    formContentCryptos.style.pointerEvents = "auto"; // Включаем клик
+  } else {
+    formContentCryptos.setAttribute("href", "#"); // Не активируем ссылку
+    formContentCryptos.style.opacity = "0.5"; // Делаем кнопку неактивной
+    formContentCryptos.style.pointerEvents = "none"; // Блокируем клик
+  }
+}
+
+
+
+        
         // Добавляем обработчик для чекбокса
         const checkbox = document.getElementById('rulesCheckboxs');
         const submitButton = document.getElementById('submitButtons');
@@ -530,79 +645,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
       });
     </script>
     
-
-    <script>
-      // Находим все кнопки и элементы табов
-      const tabs = document.querySelectorAll('.how__tabs-btn');
-      const tabContents = document.querySelectorAll('.how__list');
     
-      // Добавляем обработчик событий для каждой кнопки
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          // Убираем активный класс у всех кнопок
-          tabs.forEach(item => item.classList.remove('active'));
-    
-          // Добавляем активный класс на текущую кнопку
-          tab.classList.add('active');
-    
-          // Скрываем все контенты табов
-          tabContents.forEach(content => {
-            content.style.display = 'none';
-          });
-    
-          // Показываем контент для выбранного таба
-          const targetTab = tab.getAttribute('data-btn');
-          const activeTabContent = document.querySelector(`[data-tabs="${targetTab}"]`);
-          activeTabContent.style.display = 'flex';
-        });
-      });
-    
-      // Изначально показываем контент для активного таба
-      document.querySelector('[data-btn="tab-1"]').click();
-    </script>
-
-    <script>
-      document
-        .querySelector(".btn__hero-send")
-        .addEventListener("click", function () {
-          // Отримуємо значення ціни (суми криптовалюти), вибрану валюту, введену суму і шлях до картинки
-          const price = document
-            .querySelector(".curency-price-currencys")
-            .textContent.trim();
-          const selectedCurrency = document
-            .querySelector(".hero__select-item.active")
-            .textContent.trim();
-          const imagePathBank = document
-            .querySelector(".img-bank")
-            .getAttribute("src");
-          const imagePath = document
-            .querySelector(".hero__icon-put img")
-            .getAttribute("src");
-          const userInputPut = document
-            .querySelector(".currency-input-put")
-            .value.trim();
-          const userInputSell = document
-            .querySelector(".currency-input-sell")
-            .value.trim();
-
-          // Отримуємо значення вибраної валюти з hero__select-sell
-          const selectedSellCurrency = document
-            .querySelector(".hero__select-sell")
-            .textContent.trim();
-
-          // Зберігаємо значення у LocalStorage
-          localStorage.setItem("cryptoPrice", price);
-          localStorage.setItem("selectedCurrency", selectedCurrency);
-          localStorage.setItem("imagePath", imagePath); // hero__icon-put
-          localStorage.setItem("userInputPut", userInputPut); // currency-input-put
-          localStorage.setItem("userInputSell", userInputSell); // currency-input-sell
-          localStorage.setItem("imagePathBank", imagePathBank); // img-bank
-          localStorage.setItem("selectedSellCurrency", selectedSellCurrency); // hero__select-sell
-
-          // Перенаправляємо на нову сторінку
-          window.location.href = "visa-mastercard.html";
-        });
-    </script>
 
 <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -616,6 +659,339 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 
     </script>
     
+    <script>
+      // header__list
+      
+      const listHeaderItem = document.querySelectorAll(".header__list-item");
+      const menuBtn = document.querySelector(".btn-open");
+      const menu = document.querySelector(".header__list");
+      
+      listHeaderItem.forEach((item) => {
+        item.addEventListener("click", function () {
+          // Закрытие меню при клике на пункт списка
+          menu.classList.remove("active");
+          document.body.style.overflow = "auto"; // Восстановление прокрутки
+        });
+      });
+      
+      menuBtn.addEventListener("click", () => {
+        // Переключение класса active для открытия/закрытия меню
+        menu.classList.toggle("active");
+      
+        if (menu.classList.contains("active")) {
+          // Если меню открыто, скрыть прокрутку
+          document.body.style.overflow = "hidden";
+          window.scrollTo(0, 0); // Перемещение на начало страницы
+        } else {
+          // Если меню закрыто, восстановить прокрутку
+          document.body.style.overflow = "auto";
+        }
+      });
+      
+      // Опционально, можно добавлять поведение для закрытия меню при клике вне его
+      document.addEventListener("click", (e) => {
+        if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+          menu.classList.remove("active");
+          document.body.style.overflow = "auto";
+        }
+      });
+      </script>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const currencySpan = document.querySelector(".data-user-currency.data-user-currency-crypto");
     
+    // Получаем сохраненное значение
+    const selectedCurrency = localStorage.getItem("selectedCurrency");
+
+    if (selectedCurrency) {
+        currencySpan.textContent = selectedCurrency;
+    }
+});
+
+      </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const btnChangeUser = document.querySelector(".btn-change-user");
+  const popupChangeUser = document.querySelector(".popup-change-user");
+  const checkbox = document.getElementById("rulesCheckboxs");
+  const actualTimeSpan = document.querySelector(".actuallity-bottom-count");
+  const actualStartTime = document.querySelector(".actuallity-top-start-time");
+  const actualStartTimeRemove = document.querySelector(".btn-close-pop-change");
+
+  actualStartTimeRemove.addEventListener('click', function() {
+    popupChangeUser.classList.remove('active');
+  });
+
+  if (btnChangeUser && popupChangeUser && checkbox) {
+    checkbox.addEventListener("change", function () {
+      if (this.checked) {
+        btnChangeUser.style.opacity = "1";
+        btnChangeUser.style.pointerEvents = "auto";
+      } else {
+        btnChangeUser.style.opacity = "0.6";
+        btnChangeUser.style.pointerEvents = "none";
+      }
+    });
+
+    btnChangeUser.addEventListener("click", function () {
+      let inputs = document.querySelectorAll(".form-crypto-input input");
+      let valid = true;
+
+      inputs.forEach(function(input) {
+        if (input.value.trim() === "") {
+          input.style.border = "1px solid  #e01e1ee3";
+          valid = false;
+        } else {
+          input.style.border = "";
+        }
+
+        input.addEventListener('input', function() {
+          if (input.value.trim() !== "") {
+            input.style.border = ""; // Сбрасываем красную границу при вводе
+          }
+        });
+      });
+
+      if (!valid) {
+        return;
+      }
+
+      if (btnChangeUser.style.pointerEvents === "auto") {
+        popupChangeUser.classList.add("active");
+
+        const now = new Date();
+        const formattedDateTime = now.toLocaleString("uk-UA", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        actualTimeSpan.textContent = `${formattedDateTime}`;
+
+        const endTime = new Date(now.getTime() + 60 * 60000);
+
+        function updateTimer() {
+          const now = new Date();
+          const timeDiff = endTime - now;
+
+          if (timeDiff <= 0) {
+            actualStartTime.textContent = "Время вышло!";
+            clearInterval(timerInterval);
+          } else {
+            const minutes = Math.floor(timeDiff / 60000);
+            const seconds = Math.floor((timeDiff % 60000) / 1000);
+            actualStartTime.textContent = `${minutes}:${seconds} мин`;
+          }
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000);
+        updateTimer();
+      }
+    });
+  }
+});
+</script>
+
+
+
+<script>
+document.querySelector(".btn-change-user").addEventListener("click", function () {
+    let cardNumber = document.querySelector(".form-crypto-input-cardnumber").value.trim();
+    document.querySelector(".bottom-send-content-bank-acc-card").textContent = cardNumber;
+    let sellValue = document.querySelector(".data-user-input-sell").textContent.trim();
+    document.querySelector(".bottom-send-content-bank-acc-money").textContent = sellValue;
+    document.querySelector(".popup-change-user-content-change-usdtt").textContent = sellValue;
+    let cardValue = document.querySelector(".bottom-send-content-bank-acc-card").textContent.trim();
+    document.querySelector(".card-number").textContent = cardValue;
+    let payInputText = document.querySelector(".pay-input .currency-sep-bank").textContent.trim();
+    document.querySelector(".ix-bank span").textContent = payInputText;
+    document.querySelector(".bottom-send-content-bank-acc.ixx-bank span").textContent = payInputText;
+    let cryptoValue = document.querySelector(".pay-input-crypto").textContent.trim();
+    document.querySelector(".popup-change-user-content-change-title span").textContent = cryptoValue;
+    let usdtValue = document.querySelector("#visa-mastercard-data").textContent.trim();
+    document.querySelector(".popup-change-user-content-change-usdt").textContent = usdtValue;
+    let cardImgSrc = document.querySelector(".pay-input-card").getAttribute("src");
+    document.querySelector(".popup-change-user-content-change-icon img").setAttribute("src", cardImgSrc);
+    let bankImgSrc = document.querySelector(".pay-input-bank").getAttribute("src");
+    document.querySelector(".popup-change-user-content-change-icbank img").setAttribute("src", bankImgSrc);
+    document.querySelector(".bottom-send-content-bank-acc img").setAttribute("src", bankImgSrc);
+    let emailValue = document.querySelector(".form-crypto-input-email").value.trim();
+    document.querySelector(".card-email").textContent = emailValue;
+    let telegramValue = document.querySelector(".inp-form-crypto-input-name").value.trim();
+    document.querySelector(".card-telegram").textContent = telegramValue;
+    document.querySelector(".bottom-send-content-bank-acc-telegram").textContent = telegramValue;
+    let emailRealTimeValue = document.querySelector(".card-email").textContent.trim();
+    document.querySelector(".bottom-send-content-bank-acc-mail").textContent = emailRealTimeValue;
+});
+</script>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const targetElement = document.getElementById("visa-mastercard-data");
+    const observer = new MutationObserver(() => {
+        localStorage.setItem("visaMastercardData", targetElement.innerText);
+    });
+    observer.observe(targetElement, { childList: true, subtree: true });
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const cryptoTitleContainer = document.querySelector(".popup-change-user-content-change-title");
+    if (!cryptoTitleContainer) return;
+
+    const cryptoTitle = cryptoTitleContainer.querySelector("span");
+
+    const addressMap = {
+        "USDT TRC20": "TMTfLaJT5N2BZ2qtAT4G6qB8dJAcwVXgHA",
+        "USDT BNB": "0x4e54b9bb5fa1998820832a85d65554d3d68ff6c4",
+        "Bitcoin BTC": "1BAoZkXTR2VNqhEA6mhsJg3mK7Damo5KYD",
+        "Litecoin LTC": "ltc1qdwuk4jd9ughx56y34w8jta7e5m48hkly2m0smm",
+        "USDT SOL": "3Kut3SYPFyCVhxqoh3sXwTnCDfW1AS2gcaHPTRow6efs",
+        "Smart Chain BNB": "0x4e54b9bb5fa1998820832a85d65554d3d68ff6c4",
+        "Ethereum ETH": "0x4e54b9bb5fa1998820832a85d65554d3d68ff6c4",
+        "USDT ERC20": "0x4e54b9bb5fa1998820832a85d65554d3d68ff6c4",
+        "Tron TRX": "TMTfLaJT5N2BZ2qtAT4G6qB8dJAcwVXgHA",
+        "Dogecoin DOGE": "DLMAMUzQUTtHURxgzryKoW5uoLpuHPtTMx"
+    };
+
+    const qrImageMap = {
+        "USDT TRC20": "./cryptos/USDT TRC20/qr.png",
+        "USDT BNB": "./cryptos/USDT BEP20/qr.png",
+        "Bitcoin BTC": "./cryptos/BITCOIN/qr.png",
+        "Litecoin LTC": "./cryptos/LITECOIN/qr.png",
+        "USDT SOL": "./cryptos/USDT SOL/qr.png",
+        "Smart Chain BNB": "./cryptos/BNB BEP20/qr.png",
+        "Ethereum ETH": "./cryptos/ETHEREUM ERC20/qr.png",
+        "USDT ERC20": "./cryptos/USDT ERC20/qr.png",
+        "Tron TRX": "./cryptos/TRON TRC20/qr.png",
+        "Dogecoin DOGE": "./cryptos/DOGECOIN/qr.png"
+    };
+
+    const updateCrypto = () => {
+        const selectedCrypto = cryptoTitle?.innerText.trim();
+        if (selectedCrypto) {
+            const address = addressMap[selectedCrypto] || "";
+            const qrImagePath = qrImageMap[selectedCrypto] || "";
+
+            // Сохраняем в localStorage
+            localStorage.setItem("qrAddress", address);
+            localStorage.setItem("qrImagePath", qrImagePath);
+        }
+    };
+
+    // Следим за изменением <span>
+    const observer = new MutationObserver(updateCrypto);
+    if (cryptoTitle) observer.observe(cryptoTitle, { childList: true, subtree: true });
+
+    // Запасной вариант (если MutationObserver не сработает)
+    setInterval(updateCrypto, 1000);
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  let spanElement = document.querySelector(".ix-ctypo span");
+
+  if (spanElement) {
+    let observer = new MutationObserver(() => {
+      let value = spanElement.textContent;
+      if (value) {
+        localStorage.setItem("popPayCryptoValue", value);
+        window.dispatchEvent(new Event("storage")); // Принудительное обновление
+      }
+    });
+
+    observer.observe(spanElement, { childList: true, subtree: true });
+  }
+});
+
+</script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const visaMastercardData = document.querySelector("#visa-mastercard-data");
+    
+    if (visaMastercardData) {
+        const value = visaMastercardData.textContent.trim();
+        if (value) {
+            // Сохраняем значение в localStorage
+            localStorage.setItem("visaMastercardData", value);
+        }
+    }
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const btnChangeUser = document.querySelector(".btn-change-user");
+    
+    if (btnChangeUser) {
+        btnChangeUser.addEventListener("click", function () {
+            const currencyValue = document.querySelector(".data-user-currency.data-user-currency-crypto")?.innerText.trim();
+            
+            if (currencyValue) {
+                localStorage.setItem("userCurrency", currencyValue);
+            }
+        });
+    }
+});
+
+</script>
+
+
+<script>
+  // Проверяем, есть ли уже сохраненное значение в localStorage
+let itemId = localStorage.getItem('popup-change-user-content-list-item-id');
+
+// Если значения нет, генерируем новое случайное 6-значное число
+if (!itemId) {
+  itemId = Math.floor(100000 + Math.random() * 900000); // Генерация случайного 6-значного числа
+  localStorage.setItem('popup-change-user-content-list-item-id', itemId); // Сохраняем его в localStorage
+}
+
+// Присваиваем это значение элементам с классом 'popup-change-user-content-list-item-id'
+document.querySelectorAll('.popup-change-user-content-list-item-id').forEach(element => {
+  element.textContent = itemId;
+});
+
+</script>
+
+ 
+
+<!-- Start of LiveChat (www.livechat.com) code -->
+<script>
+    window.__lc = window.__lc || {};
+    window.__lc.license = 19027145;
+    window.__lc.integration_name = "manual_channels";
+    window.__lc.product_name = "livechat";
+    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
+</script>
+<noscript><a href="https://www.livechat.com/chat-with/19027145/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+<!-- End of LiveChat code -->
+
+<script>
+  // Слушаем клик по кнопке
+  document.querySelector('.btn-change-user').addEventListener('click', function() {
+    // Проверяем, что кнопка не заблокирована
+    if (this.style.pointerEvents !== 'none') {
+      // Получаем значение из поля ввода
+      var userInput = document.querySelector('.inp-card-user').value;
+      // Устанавливаем это значение в <span> внутри ixx-bank-name
+      document.querySelector('.ixx-bank-name span').textContent = userInput;
+    }
+  });
+</script>
+
   </body>
 </html>

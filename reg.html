@@ -3,14 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SafeXchange - Криптообменник</title>
+    <title>SafeExhcanger - Криптообменник</title>
 
     <link rel="stylesheet" href="./css/country.css" />
     <link rel="stylesheet" href="./css/swiper.css" />
     <link rel="stylesheet" href="./css/swiper-min.css" />
     <link rel="stylesheet" href="./css/main.css" />
 
+    <style>
+      .popup-delete {
+        z-index: 102;
+        color: rgb(8, 185, 97) !important;
+        gap: 10px;
+      }
+
+      .btn-close-delete-popup svg path {
+        stroke: #000 !important;
+      }
+
+      .popup-delete svg path {
+        stroke: rgb(8, 185, 97);
+      }
+
+      @media (max-width: 440px) {
+        .popup-delete h4 {
+        max-width: 100%;
+        font-size: 14px !important;
+    }
+
+     
+      }
+
+      
+    </style>
+
     <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon" />
+
+    <style>
+      .header__inner .start {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        gap: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
   </head>
   <body>
     <div class="wrapper">
@@ -23,33 +62,39 @@
                   <img src="./images/logo.png" width="60" alt="logo" />
                 </div>
 
-                <div class="end end-logo">
-                  <h4 class="icon__logo-title">SafeXchange</h4>
-                  <span class="icon__logo-slogan">Exchange for packaging</span>
+                <div class="end">
+                  <h4 class="icon__logo-title">SafeExhcanger</h4>
+                  <span class="icon__logo-slogan">Обмен под защитой</span>
                 </div>
               </a>
 
               <ul class="header__list list-reset">
                 <li class="header__list-item">
-                  <a href="#header" class="header__list-link">Обмен</a>
+                  <a href="./index.html" class="header__list-link">Обмен</a>
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#service" class="header__list-link">Сервисы</a>
+                  <a href="./index.html#service" class="header__list-link"
+                    >Сервисы</a
+                  >
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#locations-block" class="header__list-link"
+                  <a
+                    href="./index.html#locations-block"
+                    class="header__list-link"
                     >Локации</a
                   >
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#how" class="header__list-link">Как это работает?</a>
+                  <a href="./index.html#how" class="header__list-link"
+                    >Как это работает?</a
+                  >
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#!" class="header__list-link">AML</a>
+                  <a href="./aml.html" class="header__list-link">AML</a>
                 </li>
 
                 <div class="header-action-links">
@@ -64,59 +109,16 @@
               </ul>
             </div>
 
-            <div class="end">
-              <ul class="list-reset header__social">
-                <li class="header__social-item">
-                  <a href="#!" class="header__social-link">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      x="0px"
-                      y="0px"
-                      width="100"
-                      height="100"
-                      viewBox="0 0 48 48"
-                    >
-                      <linearGradient
-                        id="BiF7D16UlC0RZ_VqXJHnXa_oWiuH0jFiU0R_gr1"
-                        x1="9.858"
-                        x2="38.142"
-                        y1="9.858"
-                        y2="38.142"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop offset="0" stop-color="#33bef0"></stop>
-                        <stop offset="1" stop-color="#0a85d9"></stop>
-                      </linearGradient>
-                      <path
-                        fill="url(#BiF7D16UlC0RZ_VqXJHnXa_oWiuH0jFiU0R_gr1)"
-                        d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
-                      ></path>
-                      <path
-                        d="M10.119,23.466c8.155-3.695,17.733-7.704,19.208-8.284c3.252-1.279,4.67,0.028,4.448,2.113	c-0.273,2.555-1.567,9.99-2.363,15.317c-0.466,3.117-2.154,4.072-4.059,2.863c-1.445-0.917-6.413-4.17-7.72-5.282	c-0.891-0.758-1.512-1.608-0.88-2.474c0.185-0.253,0.658-0.763,0.921-1.017c1.319-1.278,1.141-1.553-0.454-0.412	c-0.19,0.136-1.292,0.935-1.745,1.237c-1.11,0.74-2.131,0.78-3.862,0.192c-1.416-0.481-2.776-0.852-3.634-1.223	C8.794,25.983,8.34,24.272,10.119,23.466z"
-                        opacity=".05"
-                      ></path>
-                      <path
-                        d="M10.836,23.591c7.572-3.385,16.884-7.264,18.246-7.813c3.264-1.318,4.465-0.536,4.114,2.011	c-0.326,2.358-1.483,9.654-2.294,14.545c-0.478,2.879-1.874,3.513-3.692,2.337c-1.139-0.734-5.723-3.754-6.835-4.633	c-0.86-0.679-1.751-1.463-0.71-2.598c0.348-0.379,2.27-2.234,3.707-3.614c0.833-0.801,0.536-1.196-0.469-0.508	c-1.843,1.263-4.858,3.262-5.396,3.625c-1.025,0.69-1.988,0.856-3.664,0.329c-1.321-0.416-2.597-0.819-3.262-1.078	C9.095,25.618,9.075,24.378,10.836,23.591z"
-                        opacity=".07"
-                      ></path>
-                      <path
-                        fill="#fff"
-                        d="M11.553,23.717c6.99-3.075,16.035-6.824,17.284-7.343c3.275-1.358,4.28-1.098,3.779,1.91	c-0.36,2.162-1.398,9.319-2.226,13.774c-0.491,2.642-1.593,2.955-3.325,1.812c-0.833-0.55-5.038-3.331-5.951-3.984	c-0.833-0.595-1.982-1.311-0.541-2.721c0.513-0.502,3.874-3.712,6.493-6.21c0.343-0.328-0.088-0.867-0.484-0.604	c-3.53,2.341-8.424,5.59-9.047,6.013c-0.941,0.639-1.845,0.932-3.467,0.466c-1.226-0.352-2.423-0.772-2.889-0.932	C9.384,25.282,9.81,24.484,11.553,23.717z"
-                      ></path>
-                    </svg>
-                  </a>
-                </li>
-              </ul>
-
+            <div class="end end-tel-header">
               <div class="header-action-links">
                 <a href="./login.html" class="btn-reset header__btn">Войти</a>
                 <span>|</span>
-                <a href="./reg.html" class="btn-reset header__btn active"
+                <a href="./reg.html" class="btn-reset header__btn"
                   >Регистрация</a
                 >
               </div>
 
-              <button class="btn-reset btn-open btn-open-menu-list">
+              <button class="btn-reset btn-open">
                 <img width="32" src="./images/btn-open.png" alt="" />
               </button>
             </div>
@@ -131,7 +133,11 @@
               <button class="btn-reset user__form-accbtn">Регистрация</button>
             </div>
 
-            <form action="./src/reg.php" method="post" class="user__form-inputs log-in">
+            <form
+              action="./src/reg.php"
+              method="post"
+              class="user__form-inputs log-in"
+            >
               <div class="user__form-content">
                 <span class="user__form-subtitle">E-mail</span>
                 <input
@@ -153,7 +159,7 @@
                   required
                 />
 
-                <p class="user__form-war"> 
+                <p class="user__form-war">
                   Пароль должен быть не менее 8 символов и содержать как минимум
                   одну цифру, один специальный символ, а также одну заглавную и
                   одну строчную букву
@@ -175,16 +181,33 @@
                 Зарегистрироваться!
               </button>
 
-              <div class="sign-in-help">
-                <span>Зарегистрироваться с помощью:</span>
-
+              <!-- <div class="sign-in-help">
+                <span>Зарегистрироваться с помощью</span>
                 <ul class="list-reset">
                   <li>
                     <a href="#!">
                       <img src="./images/google.svg" alt="" />
                     </a>
                   </li>
+
+                  <li>
+                    <a href="#!">
+                      <img src="./images/telegram.png" alt="" />
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#!">
+                      <img src="./images/facebook.png" alt="" />
+                    </a>
+                  </li>
                 </ul>
+              </div> -->
+
+              <div class="have-acc">
+                <h4>Уже есть аккаунт?</h4>
+
+                <a href="./login.html" class="have-acc-link"> Войти </a>
               </div>
             </form>
 
@@ -195,13 +218,13 @@
               </div>
             </div>
 
-            <img src="./images/logo.png" class="form-logo" alt="">
+            <img src="./images/logo.png" class="form-logo" alt="" />
           </div>
         </div>
       </main>
 
-<!-- Контейнер для попапов -->
-<div id="popup-container"></div>
+      <!-- Контейнер для попапов -->
+      <div id="popup-container"></div>
 
       <footer class="footer">
         <div class="container">
@@ -213,7 +236,7 @@
                 </div>
 
                 <div class="end">
-                  <h4 class="icon__logo-title">SafeXchange</h4>
+                  <h4 class="icon__logo-title">SafeExhcanger</h4>
                   <span class="icon__logo-slogan">Обмен под защитой</span>
                 </div>
               </a>
@@ -222,25 +245,33 @@
             <div class="center">
               <ul class="footer__list list-reset">
                 <li class="footer__list-item">
-                  <a href="#header" class="footer__list-link">Обмен</a>
+                  <a href="./index.html#header" class="footer__list-link"
+                    >Обмен</a
+                  >
                 </li>
 
                 <li class="footer__list-item">
-                  <a href="#service" class="footer__list-link">Сервисы</a>
+                  <a href="./index.html#service" class="footer__list-link"
+                    >Сервисы</a
+                  >
                 </li>
 
                 <li class="footer__list-item">
-                  <a href="#locations-block" class="footer__list-link"
+                  <a
+                    href="./index.html#locations-block"
+                    class="footer__list-link"
                     >Локации</a
                   >
                 </li>
 
                 <li class="footer__list-item">
-                  <a href="#how" class="footer__list-link">Как это работает?</a>
+                  <a href="./index.html#how" class="footer__list-link"
+                    >Как это работает?</a
+                  >
                 </li>
 
                 <li class="footer__list-item">
-                  <a href="#!" class="footer__list-link">AML</a>
+                  <a href="./aml.html" class="footer__list-link">AML</a>
                 </li>
               </ul>
             </div>
@@ -289,96 +320,248 @@
                 </li>
               </ul>
 
-              <div class="header-action-links">
+              <!-- <div class="header-action-links">
                 <a href="./login.html" class="btn-reset header__btn">Войти</a>
                 <span>|</span>
                 <a href="./reg.html" class="btn-reset header__btn"
                   >Регистрация</a
                 >
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
       </footer>
     </div>
-
+    <div class="footer-copyright">
+      <p>&copy; 2025 SafeExhcanger. Все права защищены.</p>
+    </div>
     <div class="overlay"></div>
+
+    <!-- <div class="popup-delete custom-popup">
+
+      <div class="basket">
+        <svg
+          class="w-6 h-6 text-gray-800 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M11 16v-5.5A3.5 3.5 0 0 0 7.5 7m3.5 9H4v-5.5A3.5 3.5 0 0 1 7.5 7m3.5 9v4M7.5 7H14m0 0V4h2.5M14 7v3m-3.5 6H20v-6a3 3 0 0 0-3-3m-2 9v4m-8-6.5h1"
+          />
+        </svg>
+      </div>
+
+      <h4>
+        Регистрация прошла успешно! <br />
+        <span>Подтвердите регистрацию на почте.</span>
+      </h4>
+
+      <button class="btn-reset btn-close-delete-popup">
+        <svg
+          class="w-6 h-6 text-gray-800 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18 17.94 6M18 18 6.06 6"
+          ></path>
+        </svg>
+      </button>
+    </div> -->
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-          const registerForm = document.querySelector(".user__form-inputs.log-in");
-      
-          if (registerForm) {
-              registerForm.addEventListener("submit", function (event) {
-                  event.preventDefault(); // Останавливаем стандартную отправку формы
-      
-                  // Получаем значения из формы
-                  const email = document.querySelector("input[name='email']").value;
-                  const password = document.querySelector("input[name='password']").value;
-                  const passwordRepeat = document.querySelector("input[name='password-repeat']").value;
-      
-                  // Проверка на совпадение паролей
-                  if (password !== passwordRepeat) {
-                      // Показываем только кастомный попап
-                      showPopup("Пароли не совпадают!", "error");
-                      return;
-                  }
-      
-                  // Если пароли совпадают, отправляем данные формы на сервер
-                  const formData = new FormData();
-                  formData.append('email', email);
-                  formData.append('password', password);
-                  formData.append('password-repeat', passwordRepeat);
-      
-                  fetch("./src/reg.php", {
-                      method: "POST",
-                      body: formData,
-                  })
-                  .then(response => response.json())
-                  .then(data => {
-                      if (data.success) {
-                          showPopup(data.message, data.type); // Показываем кастомный попап с успехом
-                          setTimeout(() => {
-                              window.location.href = data.redirect; // Редирект на страницу входа через 2 секунды
-                          }, 2000);
-                      } else {
-                          // Показываем кастомный попап с ошибкой
-                          showPopup(data.message, data.type);
-                      }
-                  })
-                  .catch(error => {
-                      // Показываем кастомный попап с ошибкой
-                      showPopup("Произошла ошибка. Попробуйте снова.", "error");
-                      console.error("Ошибка:", error);
-                  });
+        const registerForm = document.querySelector(
+          ".user__form-inputs.log-in"
+        );
+
+        if (registerForm) {
+          registerForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Останавливаем стандартную отправку формы
+
+            // Получаем значения из формы
+            const email = document.querySelector("input[name='email']").value;
+            const password = document.querySelector(
+              "input[name='password']"
+            ).value;
+            const passwordRepeat = document.querySelector(
+              "input[name='password-repeat']"
+            ).value;
+
+            // Проверка на совпадение паролей
+            if (password !== passwordRepeat) {
+              // Показываем только кастомный попап
+              showPopup("Пароли не совпадают!", "error");
+              return;
+            }
+
+            // Если пароли совпадают, отправляем данные формы на сервер
+            const formData = new FormData();
+            formData.append("email", email);
+            formData.append("password", password);
+            formData.append("password-repeat", passwordRepeat);
+
+            fetch("./src/reg.php", {
+              method: "POST",
+              body: formData,
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.success) {
+                  showPopup(data.message, data.type); // Показываем кастомный попап с успехом
+                  setTimeout(() => {
+                    window.location.href = data.redirect; // Редирект на страницу входа через 2 секунды
+                  }, 2000);
+                } else {
+                  // Показываем кастомный попап с ошибкой
+                  showPopup(data.message, data.type);
+                }
+              })
+              .catch((error) => {
+                // Показываем кастомный попап с ошибкой
+                showPopup("Произошла ошибка. Попробуйте снова.", "error");
+                console.error("Ошибка:", error);
               });
-          }
+          });
+        }
       });
-      
-      // Функция для отображения кастомного попапа
+
       function showPopup(message, type) {
-          // Убедимся, что кастомный попап только один
-          const existingPopup = document.querySelector(".custom-popup");
-          if (existingPopup) {
-              existingPopup.remove(); // Убираем предыдущий попап, если он есть
-          }
-      
-          // Создаем новый попап
-          const popup = document.createElement("div");
-          popup.classList.add("custom-popup", type); // Добавляем класс для типа (ошибка или успех)
-          popup.textContent = message; // Добавляем текст сообщения
-      
-          // Добавляем попап в контейнер
-          document.getElementById("popup-container").appendChild(popup);
-      
-          // Убираем попап через 2 секунды
-          setTimeout(() => {
-              popup.remove();
-          }, 2000);
+        const existingPopup = document.querySelector(".custom-popup");
+        if (existingPopup) {
+          existingPopup.remove();
+        }
+
+        const popup = document.createElement("div");
+        popup.classList.add("custom-popup", type);
+        popup.textContent = message;
+
+        document.getElementById("popup-container").appendChild(popup);
+
+        setTimeout(() => {
+          popup.remove();
+        }, 6000);
       }
-      </script>
-      
-  
-  
+    </script>
+
+    <script>
+      // header__list
+
+      const listHeaderItem = document.querySelectorAll(".header__list-item");
+      const menuBtn = document.querySelector(".btn-open");
+      const menu = document.querySelector(".header__list");
+
+      listHeaderItem.forEach((item) => {
+        item.addEventListener("click", function () {
+          // Закрытие меню при клике на пункт списка
+          menu.classList.remove("active");
+          document.body.style.overflow = "auto"; // Восстановление прокрутки
+        });
+      });
+
+      menuBtn.addEventListener("click", () => {
+        // Переключение класса active для открытия/закрытия меню
+        menu.classList.toggle("active");
+
+        if (menu.classList.contains("active")) {
+          // Если меню открыто, скрыть прокрутку
+          document.body.style.overflow = "hidden";
+          window.scrollTo(0, 0); // Перемещение на начало страницы
+        } else {
+          // Если меню закрыто, восстановить прокрутку
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      // Опционально, можно добавлять поведение для закрытия меню при клике вне его
+      document.addEventListener("click", (e) => {
+        if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+          menu.classList.remove("active");
+          document.body.style.overflow = "auto";
+        }
+      });
+    </script>
+
+    <script>
+      document
+        .querySelector(".btn-close-delete-popup")
+        .addEventListener("click", function () {
+          document.querySelector(".popup-delete").classList.remove("active");
+        });
+    </script>
+
+    <!-- Start of LiveChat (www.livechat.com) code -->
+    <script>
+      window.__lc = window.__lc || {};
+      window.__lc.license = 19027145;
+      window.__lc.integration_name = "manual_channels";
+      window.__lc.product_name = "livechat";
+      (function (n, t, c) {
+        function i(n) {
+          return e._h ? e._h.apply(null, n) : e._q.push(n);
+        }
+        var e = {
+          _q: [],
+          _h: null,
+          _v: "2.0",
+          on: function () {
+            i(["on", c.call(arguments)]);
+          },
+          once: function () {
+            i(["once", c.call(arguments)]);
+          },
+          off: function () {
+            i(["off", c.call(arguments)]);
+          },
+          get: function () {
+            if (!e._h)
+              throw new Error(
+                "[LiveChatWidget] You can't use getters before load."
+              );
+            return i(["get", c.call(arguments)]);
+          },
+          call: function () {
+            i(["call", c.call(arguments)]);
+          },
+          init: function () {
+            var n = t.createElement("script");
+            (n.async = !0),
+              (n.type = "text/javascript"),
+              (n.src = "https://cdn.livechatinc.com/tracking.js"),
+              t.head.appendChild(n);
+          },
+        };
+        !n.__lc.asyncInit && e.init(),
+          (n.LiveChatWidget = n.LiveChatWidget || e);
+      })(window, document, [].slice);
+    </script>
+    <noscript
+      ><a href="https://www.livechat.com/chat-with/19027145/" rel="nofollow"
+        >Chat with us</a
+      >, powered by
+      <a
+        href="https://www.livechat.com/?welcome"
+        rel="noopener nofollow"
+        target="_blank"
+        >LiveChat</a
+      ></noscript
+    >
+    <!-- End of LiveChat code -->
   </body>
 </html>

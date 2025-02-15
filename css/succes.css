@@ -1,0 +1,48 @@
+.transactions-container {
+  width: 60%;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.transaction {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.transaction:last-child {
+  border-bottom: none;
+}
+
+.transaction img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.status {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.success {
+  background: green;
+}
+
+.canceled {
+  background: red;
+}

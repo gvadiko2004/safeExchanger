@@ -3,13 +3,12 @@ session_start();
 $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SafeXchange - Криптообменник</title>
+    <title>SafeExhcanger - Криптообменник</title>
 
     <link rel="stylesheet" href="./css/country.css" />
     <link rel="stylesheet" href="./css/swiper.css" />
@@ -17,6 +16,325 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
     <link rel="stylesheet" href="./css/main.css" />
 
     <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon" />
+
+    <style>
+      .preloader__logo.active {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: scale(1.2);
+        transition: 0.4s ease;
+      }
+      .preloader__logo {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+      }
+      .preloader__logo .message__logo {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        z-index: 10;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        opacity: 1;
+      }
+
+      .preloader__logo .message__logo.active {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .preloader__logo .loadings {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 40px;
+
+        font-size: 20px;
+      }
+
+      @media (max-width: 1080px) {
+        .message__logo .logo-message {
+          min-width: 60px !important;
+          max-width: 140px !important;
+        }
+      }
+
+      @media (max-width: 440px) {
+        .message__logo .logo-message {
+          min-width: 60px !important;
+          max-width: 70px !important;
+        }
+      }
+      
+
+      @media (max-width: 440px) {
+        .preloader__logo .message__logo .logo-message {
+          min-width: 20px;
+          max-width: 60px;
+        }
+
+        .preloader__logo .loadings {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: 30px;
+          font-size: 16px;
+        }
+
+        
+      }
+    </style>
+
+    <style>
+      /* Родительский блок для списка транзакций */
+      .transactions-block {
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        overflow-x: scroll;
+        margin-bottom: 60px;
+        padding-bottom: 20px;
+        margin-top: 30px;
+      }
+
+      .transactions-block h2 {
+        margin-bottom: 15px;
+        color: #333;
+        font-size: 24px;
+      }
+
+      /* Контейнер для списка транзакций с использованием грида */
+      #transactions-list {
+        display: flex;
+        gap: 20px;
+      }
+
+      .transaction {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-left: 5px solid #00b894;
+        transition: transform 0.3s ease;
+
+        min-width: 30%;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      @media (max-width: 1080px) {
+        .transaction {
+          min-width: 40%;
+        }
+      }
+
+      @media (max-width: 890px) {
+        .transaction {
+          grid-template-columns: 1fr;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          gap: 0;
+          min-width: 48%;
+        }
+
+        .transactions-block {
+          margin-bottom: 30px;
+        }
+      }
+
+      @media (max-width: 440px) {
+        .transactions-block h2 {
+          font-size: 18px;
+          text-align: center;
+          font-weight: 900;
+        }
+
+        .transaction {
+          min-width: 98%;
+          padding: 14px;
+        }
+
+        .status.success {
+          font-size: 12px !important;
+        }
+
+        .transaction * {
+          font-size: 12px !important;
+        }
+      }
+
+      .currency {
+        display: flex;
+        align-items: center;
+      }
+
+      .currency span {
+        position: relative;
+        top: 10px;
+      }
+      @media (max-width: 1080px) {
+        .currency span {
+          position: relative;
+          top: 6px;
+        }
+      }
+
+      /* Статус оплаты */
+      .transaction .status {
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px;
+        text-align: center;
+        border-radius: 5px;
+        margin-top: 15px;
+      }
+
+      .status.success {
+        background-color: #27ae60;
+        color: white;
+      }
+
+      .status.failed {
+        background-color: #e74c3c;
+        color: white;
+      }
+
+      /* Информация о криптовалюте */
+      .crypto-info {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 10px;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .crypto-info img {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+      }
+
+      .crypto-info div {
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+      }
+
+      /* Визуальное разделение */
+      .transaction .amount,
+      .transaction .received {
+        font-weight: bold;
+        color: #333;
+        margin-top: 10px;
+      }
+
+      .transaction .amount {
+        color: #e67e22; /* Оранжевый */
+      }
+
+      .transaction .received {
+        color: #2980b9; /* Синий */
+      }
+
+      /* Время транзакции */
+      .timestamp {
+        font-size: 12px;
+        color: #888;
+        margin-top: 6px;
+      }
+    </style>
+
+    <style>
+      .crypto-carousel-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .crypto-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+
+      .crypto-carousel {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+      }
+
+      .crypto-item {
+        background: #f4f4f4;
+        padding: 20px;
+        border-radius: 8px;
+        width: 200px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        text-align: center;
+      }
+
+      .crypto-item:hover {
+        transform: scale(1.05);
+      }
+
+      .crypto-icon {
+        max-width: 50px;
+        margin-bottom: 0;
+      }
+
+      .crypto-name {
+        font-size: 1rem;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 0;
+      }
+
+      .crypto-reserve {
+        font-size: 1.1rem;
+        color: #2c3e50;
+        font-weight: 500;
+      }
+
+      @media (max-width: 768px) {
+        .crypto-item {
+          width: 150px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .crypto-item {
+          width: 120px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="wrapper">
@@ -30,70 +348,101 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                 </div>
 
                 <div class="end end-logo">
-                  <h4 class="icon__logo-title">SafeXchange</h4>
-                  <span class="icon__logo-slogan">Exchange for packaging</span>
+                  <h4 class="icon__logo-title">SafeExhcanger</h4>
+                  <span class="icon__logo-slogan">Обмен под защитой</span>
                 </div>
               </a>
 
               <ul class="header__list list-reset">
                 <li class="header__list-item">
-                  <a href="#header" class="header__list-link">Обмен</a>
+                  <a href="./user-panel.php#header" class="header__list-link"
+                    >Обмен</a
+                  >
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#service" class="header__list-link">Сервисы</a>
+                  <a href="./user-panel.php#service" class="header__list-link"
+                    >Сервисы</a
+                  >
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#locations-block" class="header__list-link">Локации</a>
+                  <a
+                    href="./user-panel.php#locations-block"
+                    class="header__list-link"
+                    >Локации</a
+                  >
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#how" class="header__list-link">Как это работает?</a>
+                  <a href="./user-panel.php#how" class="header__list-link"
+                    >Как это работает?</a
+                  >
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#!" class="header__list-link">AML</a>
+                  <a href="./aml.php" class="header__list-link">AML</a>
                 </li>
 
-                <a href="#!" class="user-panel bottom-reg-panel">
-                <div class="icon">
-                   <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                   <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
-                   </svg>
-                </div>
-               
+                <a
+                  href="./user-profile.php"
+                  class="user-panel bottom-reg-panel"
+                >
+                  <div class="icon">
+                    <svg
+                      class="w-6 h-6 text-gray-800 dark:text-white"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </div>
 
-                 <div class="bottom bottom-reg">
-                 <span class="user-panel-name">safeXchange</span>
-                 <span class="user-panel-mail"></span>
-                 </div>
-</a>
+                  <div class="bottom bottom-reg">
+                    <span class="user-panel-name">SafeExhcanger</span>
+                    <span class="user-panel-mail"></span>
+                  </div>
+                </a>
 
-<button class="btn-reset logout">
-  Выйти
-</button>
+                <a href="./index.html" class="btn-reset logout"> Выйти </a>
               </ul>
-
-              
             </div>
 
             <div class="end end-user-panel">
-<a href="#!" class="user-panel">
+              <a href="user-profile.php" class="user-panel">
                 <div class="icon">
-                   <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                   <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
-                   </svg>
+                  <svg
+                    class="w-6 h-6 text-gray-800 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
                 </div>
-               
 
-                 <div class="bottom">
-                 <span class="user-panel-name">safeXchange</span>
-                 <span class="user-panel-mail"></span>
-                 </div>
-</a>
+                <div class="bottom">
+                  <span class="user-panel-name">SafeExhcanger</span>
+                  <span class="user-panel-mail"></span>
+                </div>
+              </a>
 
-<button class="btn-reset btn-open">
+              <button class="btn-reset btn-open">
                 <img width="32" src="./images/btn-open.png" alt="" />
               </button>
             </div>
@@ -101,12 +450,201 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
         </div>
       </header>
 
+      <div class="country-time">
+        <p>
+          Обращаем ваше внимание, что ордера, созданные в период с 23:00 по МСК
+          (UTC+3) до 11:00 по МСК (UTC+3), будут выплачены после 11:00 по МСК
+          (UTC+3). Просим учитывать эту информацию перед созданием ордеров в
+          указанный период. Спасибо за понимание!
+        </p>
+      </div>
+
       <main class="main">
+        <div class="brand-parent brand-parent-usdt">
+          <div
+            class="brands brands-carousel brands-carousel-usdt"
+            id="brands-carousel"
+          >
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/trc20.svg"
+                  alt="USDT TRC20"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">USDT TRC20</span>
+                <span class="crypto-reserve">232947.57 USDT</span>
+              </div>
+            </div>
+
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/trc20.svg"
+                  alt="USDT BNB"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">USDT BNB</span>
+                <span class="crypto-reserve">20123.99 USDT</span>
+              </div>
+            </div>
+
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/btc.svg"
+                  alt="Bitcoin BTC"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">Bitcoin BTC</span>
+                <span class="crypto-reserve">12.50 Bitcoin</span>
+              </div>
+            </div>
+
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/ltc.svg"
+                  alt="Litecoin LTC"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">Litecoin LTC</span>
+                <span class="crypto-reserve">1505.22 Litecoin</span>
+              </div>
+            </div>
+
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/trc20.svg"
+                  alt="USDT SOL"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">USDT SOL</span>
+                <span class="crypto-reserve">19247.85 USDT</span>
+              </div>
+            </div>
+
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/bnb.svg"
+                  alt="Smart Chain BNB"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">Smart Chain BNB</span>
+                <span class="crypto-reserve">500.10 Smart</span>
+              </div>
+            </div>
+
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/eth.svg"
+                  alt="Ethereum ETH"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">Ethereum ETH</span>
+                <span class="crypto-reserve">1345.55 Ethereum</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="brands brands-carousel brands-carousel-usdt"
+            id="brands-carousel2"
+          >
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/trc20.svg"
+                  alt="USDT TRC20"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">USDT TRC20</span>
+                <span class="crypto-reserve">232947.57 USDT</span>
+              </div>
+            </div>
+
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/trc20.svg"
+                  alt="USDT BNB"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">USDT BNB</span>
+                <span class="crypto-reserve">20123.99 USDT</span>
+              </div>
+            </div>
+
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/btc.svg"
+                  alt="Bitcoin BTC"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">Bitcoin BTC</span>
+                <span class="crypto-reserve">12.50 Bitcoin</span>
+              </div>
+            </div>
+
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/ltc.svg"
+                  alt="Litecoin LTC"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">Litecoin LTC</span>
+                <span class="crypto-reserve">1505.22 Litecoin</span>
+              </div>
+            </div>
+
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/trc20.svg"
+                  alt="USDT SOL"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">USDT SOL</span>
+                <span class="crypto-reserve">19247.85 USDT</span>
+              </div>
+            </div>
+
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/bnb.svg"
+                  alt="Smart Chain BNB"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">Smart Chain BNB</span>
+                <span class="crypto-reserve">500.10 Smart</span>
+              </div>
+            </div>
+
+            <div class="slide-content">
+              <div class="crypto-item">
+                <img
+                  src="./images/eth.svg"
+                  alt="Ethereum ETH"
+                  class="crypto-icon"
+                />
+                <span class="crypto-name">Ethereum ETH</span>
+                <span class="crypto-reserve">1345.55 Ethereum</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <section class="hero" id="hero">
           <div class="container">
             <div class="hero__inner">
               <div class="hero__content hero__content-ph">
-                <h2 class="hero__content-title">Safe<span>Xchange</span></h2>
+                <h2 class="hero__content-title">Elite<span>Rubex</span></h2>
                 <h4 class="hero__content-subtitle">
                   > Просто меняй, переводи, выгодный курс!
                 </h4>
@@ -114,9 +652,9 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 
               <div class="hero__start">
                 <div class="hero__content">
-                  <h2 class="hero__content-title">Safe<span>Xchange</span></h2>
+                  <h2 class="hero__content-title">Elite<span>Rubex</span></h2>
                   <h4 class="hero__content-subtitle">
-                    Crypto - просто меняй, переводи, оплачивай
+                    SafeExhcanger — легко обменивать, переводить, оплачивать
                   </h4>
 
                   <ul class="hero__list list-reset">
@@ -1157,14 +1695,14 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                 <label class="rules-block">
                   <input type="checkbox" id="rulesCheckbox" />
                   <h4 class="rules">
-                    С <a href="#!">правилами AML/KYC</a> и
-                    <a href="#!">правилами обмена</a> ознакомлен
+                    С <a href="./aml.php">правилами AML/KYC</a> и
+                    <a href="./aml.php">правилами обмена</a> ознакомлен
                   </h4>
                 </label>
 
                 <a
                   href="./user-change.php"
-                  class="btn-reset btn__hero-send btn-submit"
+                  class="btn-reset btn__hero-send btn-submit btn-send-change bt-se"
                   id="submitButton"
                   style="opacity: 0.5; pointer-events: none"
                   >Обменять</a
@@ -1213,9 +1751,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
             <div class="card">
               <img src="./images/icons/7.png" alt="" />
             </div>
-            <div class="card">
-              <img src="./images/icons/8.png" alt="" />
-            </div>
+
             <div class="card">
               <a href="https://e-mon.cc/exchanger/835">
                 <img src="./images/icons/9.png" alt="" />
@@ -1247,11 +1783,19 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
             <div class="card">
               <img src="./images/icons/7.png" alt="" />
             </div>
-            <div class="card">
-              <img src="./images/icons/8.png" alt="" />
-            </div>
+
             <div class="card">
               <img src="./images/icons/9.png" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <h2>Последние транзакции</h2>
+
+          <div class="transactions-block">
+            <div class="transactions-list" id="transactions-list">
+              <!-- Транзакции будут добавляться сюда динамически -->
             </div>
           </div>
         </div>
@@ -1745,44 +2289,49 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                 <img src="./images/cir.png" class="cir-how" alt="" />
 
                 <div class="how__tabs">
-                  <button class="btn-reset how__tabs-btn active" data-btn="tab-1">
+                  <button
+                    class="btn-reset how__tabs-btn active"
+                    data-btn="tab-1"
+                  >
                     Online
                   </button>
                   <button class="btn-reset how__tabs-btn" data-btn="tab-2">
                     Offline
                   </button>
                 </div>
-                
+
                 <div class="how__list" data-tabs="tab-1">
                   <div class="how__list-item">
                     <span class="how__list-count">01</span>
-                    <h3 class="how__list-septitle">Выбери валют купить</h3>
+                    <h3 class="how__list-septitle">
+                      Выбери криптовалюту для обмена
+                    </h3>
                   </div>
-                
+
                   <div class="how__list-item">
                     <span class="how__list-count">02</span>
-                    <h3 class="how__list-septitle">Выбери валюту платить</h3>
+                    <h3 class="how__list-septitle">Выбери банк для обмена</h3>
                   </div>
-                
+
                   <div class="how__list-item">
                     <span class="how__list-count">03</span>
-                    <h3 class="how__list-septitle">Обменять</h3>
+                    <h3 class="how__list-septitle">Жми кнопку "Обменять"</h3>
                   </div>
                 </div>
-                
+
                 <div class="how__list" data-tabs="tab-2">
                   <div class="how__list-item">
                     <span class="how__list-count">01</span>
                     <h3 class="how__list-septitle">Согласование условий</h3>
                   </div>
-                
+
                   <div class="how__list-item">
                     <span class="how__list-count">02</span>
                     <h3 class="how__list-septitle">
-                      Встреча в офисе & c курьером
+                      Встреча в офисе, а поотом c курьером
                     </h3>
                   </div>
-                
+
                   <div class="how__list-item">
                     <span class="how__list-count">03</span>
                     <h3 class="how__list-septitle">Производим обмен</h3>
@@ -3096,7 +3645,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
               </div>
 
               <div class="location-text">
-                *Не нашли локацию, которая нужна - оставляй заявку, обсудим и в
+                Не нашли локацию, которая нужна - оставляй заявку, обсудим и в
                 течении 5 мин решим вопрос
               </div>
 
@@ -3669,10 +4218,9 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
               <h2 class="testimonials-title">О нас</h2>
 
               <p class="testimonials-sbutitle">
-                Safe<span>Xchange</span> это криптовалютный обменник с
+                Elite<span>Rubex</span> это криптовалютный обменник с
                 дополнительными услугами по оплате товаров и услуг, а также
-                переводу средств по всему миру, включая Украину, Европу, Азию,
-                СНГ, Африку, Латинскую Америку и США.
+                переводу средств по всему миру.
               </p>
 
               <div class="testimonials__content">
@@ -3685,13 +4233,13 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                             <img width="26" src="./images/logo.png" alt="" />
                           </div>
 
-                          <h3 class="testimonials__content-name">Максим</h3>
+                          <h3 class="testimonials__content-name">Алексей</h3>
                         </div>
 
                         <div class="center">
                           <p>
-                            Очень удобный сервис! Деньги поступают на карту
-                            мгновенно, курс выгодный. Буду пользоваться ещё!
+                            Уже не первый раз пользуюсь, всегда всё быстро и без
+                            проблем. Спасибо вам!)
                           </p>
                         </div>
 
@@ -3730,19 +4278,18 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                             <img width="26" src="./images/logo.png" alt="" />
                           </div>
 
-                          <h3 class="testimonials__content-name">Елена</h3>
+                          <h3 class="testimonials__content-name">Мария</h3>
                         </div>
 
                         <div class="center">
                           <p>
-                            Обмен прошёл быстро и без проблем. Порадовала
-                            простота интерфейса и поддержка, которая ответила на
-                            мои вопросы.
+                            Очень удобный сервис, всё понятно даже тем, кто
+                            впервые делает обмен. Рекомендую!
                           </p>
                         </div>
 
                         <div class="bottom">
-                          <span>6 января 2025</span>
+                          <span>3 января 2025</span>
                         </div>
 
                         <ul class="testimonials__star list-reset">
@@ -3776,18 +4323,18 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                             <img width="26" src="./images/logo.png" alt="" />
                           </div>
 
-                          <h3 class="testimonials__content-name">Артём</h3>
+                          <h3 class="testimonials__content-name">Дмитрий</h3>
                         </div>
 
                         <div class="center">
                           <p>
-                            Лучший обменник, который я пробовал! Всё быстро, без
-                            скрытых комиссий. Уже добавил в закладки.
+                            Обмен занял пару минут, деньги пришли сразу. Так
+                            держать!
                           </p>
                         </div>
 
                         <div class="bottom">
-                          <span>24 лекабря 2025</span>
+                          <span>13 декабря 2025</span>
                         </div>
 
                         <ul class="testimonials__star list-reset">
@@ -3821,18 +4368,240 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                             <img width="26" src="./images/logo.png" alt="" />
                           </div>
 
-                          <h3 class="testimonials__content-name">Виктория</h3>
+                          <h3 class="testimonials__content-name">Ольга</h3>
                         </div>
 
                         <div class="center">
                           <p>
-                            Всегда довольно быстро приходят деньги на карту,ноль
-                            претензий) удобная платёжка) в сохранённых
+                            Сначала переживала, но всё прошло отлично. Теперь
+                            только сюда!
                           </p>
                         </div>
 
                         <div class="bottom">
-                          <span>11 января 2025</span>
+                          <span>2 декабря 2025</span>
+                        </div>
+
+                        <ul class="testimonials__star list-reset">
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="testimonials__content-item">
+                        <div class="top">
+                          <div class="testimonials__content-icon">
+                            <img width="26" src="./images/logo.png" alt="" />
+                          </div>
+
+                          <h3 class="testimonials__content-name">Владислав</h3>
+                        </div>
+
+                        <div class="center">
+                          <p>
+                            Честно, не ожидал такой скорости. Всё супер,
+                            спасибо!
+                          </p>
+                        </div>
+
+                        <div class="bottom">
+                          <span>1 декабря 2025</span>
+                        </div>
+
+                        <ul class="testimonials__star list-reset">
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="testimonials__content-item">
+                        <div class="top">
+                          <div class="testimonials__content-icon">
+                            <img width="26" src="./images/logo.png" alt="" />
+                          </div>
+
+                          <h3 class="testimonials__content-name">Светлана</h3>
+                        </div>
+
+                        <div class="center">
+                          <p>
+                            Поддержка отвечает моментально, помогли разобраться.
+                            Очень довольна!)
+                          </p>
+                        </div>
+
+                        <div class="bottom">
+                          <span>23 ноября 2025</span>
+                        </div>
+
+                        <ul class="testimonials__star list-reset">
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="testimonials__content-item">
+                        <div class="top">
+                          <div class="testimonials__content-icon">
+                            <img width="26" src="./images/logo.png" alt="" />
+                          </div>
+
+                          <h3 class="testimonials__content-name">Игорь</h3>
+                        </div>
+
+                        <div class="center">
+                          <p>
+                            Один из лучших обменников, курс всегда хороший. Уже
+                            в закладках)
+                          </p>
+                        </div>
+
+                        <div class="bottom">
+                          <span>16 ноября 2025</span>
+                        </div>
+
+                        <ul class="testimonials__star list-reset">
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="testimonials__content-item">
+                        <div class="top">
+                          <div class="testimonials__content-icon">
+                            <img width="26" src="./images/logo.png" alt="" />
+                          </div>
+
+                          <h3 class="testimonials__content-name">Екатерина</h3>
+                        </div>
+
+                        <div class="center">
+                          <p>
+                            Деньги пришли за минуту, даже не ожидала, что так
+                            быстро)))
+                          </p>
+                        </div>
+
+                        <div class="bottom">
+                          <span>6 ноября 2025</span>
+                        </div>
+
+                        <ul class="testimonials__star list-reset">
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+
+                          <li>
+                            <img src="./images/star.png" alt="" />
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <div class="testimonials__content-item">
+                        <div class="top">
+                          <div class="testimonials__content-icon">
+                            <img width="26" src="./images/logo.png" alt="" />
+                          </div>
+
+                          <h3 class="testimonials__content-name">Анастасия</h3>
+                        </div>
+
+                        <div class="center">
+                          <p>Удобный сервис, всё работает как надо. Спс)</p>
+                        </div>
+
+                        <div class="bottom">
+                          <span>3 октября 2025</span>
                         </div>
 
                         <ul class="testimonials__star list-reset">
@@ -3859,8 +4628,6 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                       </div>
                     </div>
                   </div>
-                  <!-- <div class="swiper-button-prev"></div>
-                  <div class="swiper-button-next"></div> -->
                 </div>
               </div>
             </div>
@@ -3969,7 +4736,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                       </div>
 
                       <span class="hero__list-subtitle"
-                        >Нарантия сохранность средств</span
+                        >Гарантия сохранность средств</span
                       >
                     </li>
 
@@ -4041,7 +4808,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
           <div class="container">
             <div class="fag__inner">
               <h2 class="title fag-title">
-                FAG
+                FAQ
                 <span class="sep-line"></span>
               </h2>
 
@@ -4057,7 +4824,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                     Для того, чтобы создать заявку, Вам необходимо следовать
                     дальнейшей инструкции: 1. Выберите направление обмена
                     (пример: в столбце “Отдаю” - USDT TRC20, в столбце “Получаю”
-                    - Монобанк) и укажите сумму, которую Вы хотите обменять или
+                    - Сбербанк) и укажите сумму, которую Вы хотите обменять или
                     получить. 2. Заполните свои данные в столбце “Ввод данных”,
                     а именно укажите свой e-mail, номер кошелька (карты или
                     счета), с которого хотите перевести деньги, номер кошелька
@@ -4233,7 +5000,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
                 </div>
 
                 <div class="end">
-                  <h4 class="icon__logo-title">SafeXchange</h4>
+                  <h4 class="icon__logo-title">SafeExhcanger</h4>
                   <span class="icon__logo-slogan">Обмен под защитой</span>
                 </div>
               </a>
@@ -4242,31 +5009,39 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
             <div class="center">
               <ul class="footer__list list-reset">
                 <li class="footer__list-item">
-                  <a href="#header" class="footer__list-link">Обмен</a>
+                  <a href="./user-panel.php#header" class="footer__list-link"
+                    >Обмен</a
+                  >
                 </li>
 
                 <li class="footer__list-item">
-                  <a href="#service" class="footer__list-link">Сервисы</a>
+                  <a href="./user-panel.php#service" class="footer__list-link"
+                    >Сервисы</a
+                  >
                 </li>
 
                 <li class="footer__list-item">
-                  <a href="#locations-block" class="footer__list-link"
+                  <a
+                    href="./user-panel.php#locations-block"
+                    class="footer__list-link"
                     >Локации</a
                   >
                 </li>
 
                 <li class="footer__list-item">
-                  <a href="#how" class="footer__list-link">Как это работает?</a>
+                  <a href="./user-panel.php#how" class="footer__list-link"
+                    >Как это работает?</a
+                  >
                 </li>
 
                 <li class="footer__list-item">
-                  <a href="#!" class="footer__list-link">AML</a>
+                  <a href="./aml.php" class="footer__list-link">AML</a>
                 </li>
               </ul>
             </div>
 
             <div class="end end-section">
-            <ul class="list-reset footer__social">
+              <ul class="list-reset footer__social">
                 <li class="footer__social-item">
                   <a href="#!" class="footer__social-link">
                     <svg
@@ -4314,41 +5089,45 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
       </footer>
     </div>
 
+    <div class="footer-copyright">
+      <p>&copy; 2025 SafeExhcanger. Все права защищены.</p>
+    </div>
+
     <div class="overlay"></div>
-
-
+    <script defer src="./js/swiper.js"></script>
+    <script defer src="./js/swiper-min.js"></script>
     <script defer src="./js/main.js"></script>
     <script defer src="./js/form.js"></script>
     <script defer src="./js/crypto.js"></script>
-    <script defer src="./js/swiper.js"></script>
-    <script defer src="./js/swiper-min.js"></script>
 
     <script>
       // Находим все кнопки и элементы табов
-      const tabs = document.querySelectorAll('.how__tabs-btn');
-      const tabContents = document.querySelectorAll('.how__list');
-    
+      const tabs = document.querySelectorAll(".how__tabs-btn");
+      const tabContents = document.querySelectorAll(".how__list");
+
       // Добавляем обработчик событий для каждой кнопки
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
           // Убираем активный класс у всех кнопок
-          tabs.forEach(item => item.classList.remove('active'));
-    
+          tabs.forEach((item) => item.classList.remove("active"));
+
           // Добавляем активный класс на текущую кнопку
-          tab.classList.add('active');
-    
+          tab.classList.add("active");
+
           // Скрываем все контенты табов
-          tabContents.forEach(content => {
-            content.style.display = 'none';
+          tabContents.forEach((content) => {
+            content.style.display = "none";
           });
-    
+
           // Показываем контент для выбранного таба
-          const targetTab = tab.getAttribute('data-btn');
-          const activeTabContent = document.querySelector(`[data-tabs="${targetTab}"]`);
-          activeTabContent.style.display = 'flex';
+          const targetTab = tab.getAttribute("data-btn");
+          const activeTabContent = document.querySelector(
+            `[data-tabs="${targetTab}"]`
+          );
+          activeTabContent.style.display = "flex";
         });
       });
-    
+
       // Изначально показываем контент для активного таба
       document.querySelector('[data-btn="tab-1"]').click();
     </script>
@@ -4396,18 +5175,341 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
         });
     </script>
 
-<script>
-        document.addEventListener("DOMContentLoaded", function () {
-    const userEmail = sessionStorage.getItem("userEmail");
-    if (userEmail) {
-        document.querySelectorAll(".user-panel-mail").forEach(element => {
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const userEmail = sessionStorage.getItem("userEmail");
+        if (userEmail) {
+          document.querySelectorAll(".user-panel-mail").forEach((element) => {
             element.textContent = userEmail;
-        });
-    }
-});
-
+          });
+        }
+      });
     </script>
 
-    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const dropdownItems = document.querySelectorAll(".hero__dropdown-item");
+
+        dropdownItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            const selectedCurrency = this.querySelector(
+              ".hero__dropdown-cur"
+            ).textContent;
+
+            // Сохраняем в localStorage
+            localStorage.setItem("selectedCurrency", selectedCurrency);
+
+            // Перенаправляем на user-change.php
+            window.location.href = "user-change.php";
+          });
+        });
+      });
+    </script>
+
+    <script>
+      // header__list
+
+      const listHeaderItem = document.querySelectorAll(".header__list-item");
+      const menuBtn = document.querySelector(".btn-open");
+      const menu = document.querySelector(".header__list");
+
+      listHeaderItem.forEach((item) => {
+        item.addEventListener("click", function () {
+          // Закрытие меню при клике на пункт списка
+          menu.classList.remove("active");
+          document.body.style.overflow = "auto"; // Восстановление прокрутки
+        });
+      });
+
+      menuBtn.addEventListener("click", () => {
+        // Переключение класса active для открытия/закрытия меню
+        menu.classList.toggle("active");
+
+        if (menu.classList.contains("active")) {
+          // Если меню открыто, скрыть прокрутку
+          document.body.style.overflow = "hidden";
+          window.scrollTo(0, 0); // Перемещение на начало страницы
+        } else {
+          // Если меню закрыто, восстановить прокрутку
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      // Опционально, можно добавлять поведение для закрытия меню при клике вне его
+      document.addEventListener("click", (e) => {
+        if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+          menu.classList.remove("active");
+          document.body.style.overflow = "auto";
+        }
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const t = document.getElementById("transactions-list");
+        function e() {
+          return new Date()
+            .toLocaleString("ru-RU", { timeZone: "Europe/Kiev", hour12: !1 })
+            .replace(",", "");
+        }
+        function a() {
+          const t = new Date(),
+            e = Math.floor(92 * Math.random()) + 37;
+          t.setMinutes(t.getMinutes() - e);
+          return t
+            .toLocaleString("ru-RU", { timeZone: "Europe/Kiev", hour12: !1 })
+            .replace(",", "");
+        }
+        function n(e, a) {
+          const n = document.createElement("div");
+          n.classList.add("transaction");
+          const i = (e.amount * e.price * a).toFixed(2),
+            o = Math.random() > 0.1 ? "success" : "failed";
+          (n.innerHTML = `\n          <div class="crypto-info">\n              <img src="${
+            e.icon
+          }" alt="${
+            e.crypto
+          }" class="crypto-icon">\n              <div>\n                  <div>${
+            e.firstName
+          } ${e.lastName} (${
+            e.crypto
+          })</div>\n                  <div class="timestamp">${
+            e.time
+          }</div>\n              </div>\n          </div>\n          <div class="amount">${e.amount.toLocaleString()} ${
+            e.crypto
+          }</div>\n          <div class="received">${i} RUB</div>\n          <div class="status ${o}">${
+            "success" === o ? "Успешный" : "Отменён"
+          }</div>\n      `),
+            t.prepend(n);
+        }
+        !(async function () {
+          const t = await (async function () {
+              const t = await fetch(
+                  "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether&vs_currencies=rub"
+                ),
+                e = await t.json();
+              return {
+                USDT: e.tether?.rub || 0,
+                BTC: e.bitcoin?.rub || 0,
+                ETH: e.ethereum?.rub || 0,
+              };
+            })(),
+            i = 1.042,
+            o = [
+              {
+                firstName: "Иван",
+                lastName: "Иванов",
+                crypto: "USDT",
+                amount: 800.12,
+                bank: "Газпром Банк",
+                price: t.USDT,
+                icon: "./images/trc20.svg",
+              },
+              {
+                firstName: "Мария",
+                lastName: "Петрова",
+                crypto: "ETH",
+                amount: 0.23,
+                bank: "Тинькофф",
+                price: t.ETH,
+                icon: "./images/eth.svg",
+              },
+              {
+                firstName: "Алексей",
+                lastName: "Сидоров",
+                crypto: "BTC",
+                amount: 0.012,
+                bank: "Тинькофф",
+                price: t.BTC,
+                icon: "./images/btc.svg",
+              },
+              {
+                firstName: "Ольга",
+                lastName: "Кузнецова",
+                crypto: "BTC",
+                amount: 0.108,
+                bank: "Сбербанк",
+                price: t.BTC,
+                icon: "./images/btc.svg",
+              },
+              {
+                firstName: "Дмитрий",
+                lastName: "Васильев",
+                crypto: "USDT",
+                amount: 2300.23,
+                bank: "Райффайзен",
+                price: t.USDT,
+                icon: "./images/trc20.svg",
+              },
+              {
+                firstName: "Андрей",
+                lastName: "Иванов",
+                crypto: "ETH",
+                amount: 1,
+                bank: "Газпром Банк",
+                price: t.ETH,
+                icon: "./images/eth.svg",
+              },
+              {
+                firstName: "Екатерина",
+                lastName: "Морозова",
+                crypto: "USDT",
+                amount: 520,
+                bank: "Тинькофф",
+                price: t.USDT,
+                icon: "./images/trc20.svg",
+              },
+              {
+                firstName: "Петр",
+                lastName: "Григорьев",
+                crypto: "BTC",
+                amount: 0.02,
+                bank: "Сбербанк",
+                price: t.BTC,
+                icon: "./images/btc.svg",
+              },
+              {
+                firstName: "Виктор",
+                lastName: "Шевченко",
+                crypto: "ETH",
+                amount: 0.3,
+                bank: "Райффайзен",
+                price: t.ETH,
+                icon: "./images/eth.svg",
+              },
+            ];
+          let c = 0;
+          const s = o.map((t) => ({ ...t, time: a() }));
+          s.forEach((t) => {
+            n(t, i);
+          }),
+            setInterval(() => {
+              c < s.length && (n(s[c], i), c++);
+            }, Math.floor(180001 * Math.random()) + 12e4),
+            setInterval(() => {
+              const a = (function (t) {
+                const a = ["USDT", "BTC", "ETH"],
+                  n = a[Math.floor(Math.random() * a.length)],
+                  i = (4950 * Math.random() + 50).toFixed(2),
+                  o = ["Тинькофф", "Сбербанк", "Газпром Банк", "Райффайзен"][
+                    Math.floor(4 * Math.random())
+                  ];
+                let c = 0;
+                switch (n) {
+                  case "USDT":
+                    c = t.USDT;
+                    break;
+                  case "BTC":
+                    c = t.BTC;
+                    break;
+                  case "ETH":
+                    c = t.ETH;
+                }
+                return {
+                  firstName: "Random",
+                  lastName: "Client",
+                  crypto: n,
+                  amount: i,
+                  bank: o,
+                  price: c,
+                  icon: `./images/${n.toLowerCase()}.svg`,
+                  time: e(),
+                };
+              })(t);
+              n(a, i);
+            }, Math.floor(180001 * Math.random()) + 12e4);
+        })();
+      });
+    </script>
+
+    <script>
+      function updateCountryTime() {
+        const now = new Date();
+        const options = { timeZone: "Europe/Moscow", hour12: false };
+        const hour = new Intl.DateTimeFormat("ru-RU", {
+          ...options,
+          hour: "2-digit",
+        }).format(now);
+
+        const countryTimeBlock = document.querySelector(".country-time");
+
+        if (hour >= 23 || hour < 11) {
+          countryTimeBlock.classList.add("active");
+        } else {
+          countryTimeBlock.classList.remove("active");
+        }
+      }
+
+      // Обновляем сразу и затем каждую минуту
+      updateCountryTime();
+      setInterval(updateCountryTime, 60000);
+    </script>
+
+    <!-- Start of LiveChat (www.livechat.com) code -->
+<script>
+    window.__lc = window.__lc || {};
+    window.__lc.license = 19027145;
+    window.__lc.integration_name = "manual_channels";
+    window.__lc.product_name = "livechat";
+    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
+</script>
+<noscript><a href="https://www.livechat.com/chat-with/19027145/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+<!-- End of LiveChat code -->
+
+
+    <div class="preloader__logo">
+      <div class="message__logo">
+        <img class="logo-message" src="./images/logo.png" alt="" />
+
+        <div class="bg-circle">
+          <div class="bg-circle-item"></div>
+          <div class="bg-circle-item"></div>
+          <div class="bg-circle-item"></div>
+        </div>
+
+        <span class="loadings">Загрузка...</span>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let preloader = document.querySelector(".preloader__logo");
+        let wrapper = document.querySelector(".wrapper");
+
+        // Стили прелоадера
+        preloader.style.position = "fixed";
+        preloader.style.width = "100%";
+        preloader.style.height = "100%";
+        preloader.style.background = "white";
+        preloader.style.display = "flex";
+        preloader.style.alignItems = "center";
+        preloader.style.justifyContent = "center";
+        preloader.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+
+        // Изначально скрываем wrapper
+        wrapper.style.display = "none";
+      });
+
+      window.onload = function () {
+        let preloader = document.querySelector(".preloader__logo");
+        let wrapper = document.querySelector(".wrapper");
+
+        // Показываем контент
+        wrapper.style.display = "block";
+
+        setTimeout(() => {
+          wrapper.style.opacity = "1"; // Плавное появление контента
+
+          // Через 0.5 сек скрываем прелоадер
+          setTimeout(() => {
+            preloader.style.opacity = "0";
+            preloader.style.transform = "scale(1.2)";
+            setTimeout(() => {
+              preloader.style.display = "none";
+            }, 400); // Ждем окончания анимации
+          }, 500); // Задержка перед скрытием прелоадера
+        }, 50); // Короткая пауза, чтобы контент точно отобразился
+      };
+    </script>
   </body>
 </html>

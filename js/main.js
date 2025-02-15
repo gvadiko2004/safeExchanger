@@ -50,30 +50,6 @@ currencyInput.addEventListener("input", function () {
   }
 });
 
-// header__list
-
-const listHeaderItem = document.querySelectorAll(".header__list-item");
-const menuBtn = document.querySelector(".btn-open");
-const menu = document.querySelector(".header__list");
-
-listHeaderItem.forEach((item) => {
-  item.addEventListener("click", function () {
-    menu.classList.remove("active");
-    document.body.style.overflow = "auto"; // Встановлюємо auto замість visible
-  });
-});
-
-menuBtn.addEventListener("click", () => {
-  menu.classList.toggle("active");
-
-  if (menu.classList.contains("active")) {
-    document.body.style.overflow = "hidden";
-    window.scrollTo(0, 0); // Переміщуємо прокрутку в початок
-  } else {
-    document.body.style.overflow = "auto"; // Встановлюємо auto замість пустого
-  }
-});
-
 
 // fag__accordeon-item
 

@@ -1,5 +1,9 @@
 .footer {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+
+  @media (max-width: 1080px) {
+    margin-bottom: 10px;
+  }
 
   .icon-logo .end {
     gap: 8px !important;
@@ -27,7 +31,7 @@
 
   .icon__logo-slogan {
     @media (max-width: 440px) {
-      font-size: 8px;
+      font-size: 10px !important;
       font-weight: 400;
     }
   }
@@ -222,7 +226,6 @@ footer {
 .header__inner .end-logo {
   @media (max-width: 440px) {
     align-items: flex-start;
-    gap: 6px;
   }
 }
 
@@ -321,3 +324,75 @@ footer {
     transform: scale(0.8);
   }
 }
+
+.container-xl {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @media (max-width: 1080px) {
+    position: relative;
+    padding-top: 100px;
+
+    top: 0%;
+    transform: translateY(0%);
+  }
+
+  @media (max-width: 440px) {
+    position: relative;
+    padding-top: 20px;
+  }
+}
+
+.crypto-reserve {
+  font-size: 13px !important;
+}
+
+.crypto-item {
+  width: 100% !important;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: 12px;
+  padding: 10px;
+
+  @media (max-width: 440px) {
+    width: 100% !important;
+
+    padding: 12px !important;
+    justify-content: center;
+  }
+}
+.brand-parent .slide-content {
+  @media (max-width: 440px) {
+    width: 130px !important;
+  }
+}
+
+.brand-parent-usdt .slide-content {
+  @media (max-width: 440px) {
+    width: 260px !important;
+
+    a {
+      padding: 14px;
+    }
+  }
+}
+
+.crypto-name {
+  @media (max-width: 440px) {
+    font-size: 12px !important;
+  }
+}
+
+.crypto-reserve {
+  @media (max-width: 440px) {
+    font-size: 11px !important;
+  }
+}
+
+
+.country-time {
+  margin-bottom: 20px !important;
+}
+

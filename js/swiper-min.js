@@ -1,6 +1,6 @@
 const swiperTesti = new Swiper(".swiper-testimonials", {
   direction: "horizontal",
-  loop: true,
+  loop: false,
   slidesPerView: 4,
   spaceBetween: 52,
   speed: 1200,

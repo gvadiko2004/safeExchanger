@@ -1,0 +1,112 @@
+.aml-rules-btn {
+}
+
+.aml-rules-cont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    flex-wrap: nowrap;
+    margin-bottom: 0;
+    justify-content: flex-start;
+    margin: 20px 0;
+  }
+
+  p {
+    margin-bottom: 32px;
+  }
+
+  .aml-rules-btn {
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 100px;
+    border: 1px solid #000;
+    color: #000;
+
+    @media (max-width: 768px) {
+      white-space: nowrap;
+    }
+
+    &.active {
+      background: linear-gradient(
+        146deg,
+        rgb(95, 207, 229) 0%,
+        rgb(15, 85, 97) 100%
+      );
+
+      border: 1px solid transparent;
+      color: #fff;
+    }
+  }
+}
+
+.aml-list-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px 0;
+  margin-left: 30px;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+}
+
+.aml-rules-content {
+  padding-bottom: 80px;
+
+  @media (max-width: 440px) {
+    padding-bottom: 40px;
+  }
+}
+
+.aml-rules-content-title {
+  margin-bottom: 32px;
+}
+
+.aml-list-title {
+  margin-top: 32px;
+}
+
+.aml-supp {
+  color: red;
+}
+
+.aml-sup-b {
+  display: block;
+  margin-top: 50px;
+}
+
+.aml-list-item {
+  align-items: flex-start !important;
+  .circles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    background: linear-gradient(
+      146deg,
+      rgb(95, 207, 229) 0%,
+      rgb(15, 85, 97) 100%
+    );
+  }
+}
+
+@media (max-width: 440px) {
+  .aml-list-title {
+    font-size: 20px;
+  }
+}
+
+.aml-rules-tabs {
+  @media (max-width: 768px) {
+    overflow: auto;
+  }
+}

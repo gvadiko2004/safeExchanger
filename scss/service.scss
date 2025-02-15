@@ -23,7 +23,6 @@
 
     @media (max-width: 440px) {
       margin: 40px 0 0 0;
-
     }
   }
 
@@ -97,6 +96,8 @@
 
 .service__content-start {
   .service__list-item {
+    border-radius: 14px;
+
     .top {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -134,6 +135,8 @@
   }
 
   .service__list-item {
+    border-radius: 14px;
+
     .center {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -172,6 +175,8 @@
   }
 
   .service__list-item {
+    border-radius: 14px;
+
     .bottom {
       display: grid;
       grid-template-columns: 1fr 4fr;
@@ -226,6 +231,8 @@
 
 .service__content-end {
   .service__list-item {
+    border-radius: 14px;
+
     .top {
       display: grid;
       grid-template-columns: 1fr 4fr;

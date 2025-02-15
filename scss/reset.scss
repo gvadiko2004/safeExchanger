@@ -359,11 +359,15 @@ input[type="number"] {
     flex: 0 0 64%;
 
     @media (max-width: 1920px) {
-      flex: 0 0 100%;
+      flex: 0 0 121%;
     }
 
     @media (max-width: 1280px) {
       flex: 0 0 180%;
+    }
+
+    @media (max-width: 1280px) {
+      flex: 0 0 220%;
     }
 
     @media (max-width: 768px) {
@@ -372,6 +376,35 @@ input[type="number"] {
 
     @media (max-width: 440px) {
       flex: 0 0 300%;
+    }
+  }
+}
+
+.carousel-cr {
+  > * {
+    @media (max-width: 440px) {
+      flex: 0 0 625%;
+
+      .crypto-item {
+        width: 100% !important;
+
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .crypto-reserve,
+      .crypto-name {
+        margin-bottom: 0;
+        font-size: 13px;
+      }
+
+      .crypto-icon {
+        margin-bottom: 0;
+      }
     }
   }
 }
@@ -390,7 +423,7 @@ input[type="number"] {
 
 .group {
   will-change: transform; /* Мы должны быть добры к браузеру - пусть он знает, что мы будем анимировать. */
-  animation: scrolling 50s linear infinite;
+  animation: scrolling 150s linear infinite;
 }
 
 @keyframes scrolling {
@@ -604,18 +637,16 @@ input[type="number"] {
   opacity: 0;
   visibility: hidden;
 
-
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  
   font-family: var(--font-manrope);
 
   @media (max-width: 1080px) {
     top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 .popup.show {
@@ -638,9 +669,7 @@ input[type="number"] {
   cursor: pointer;
 }
 
-
-
-// 
+//
 
 .custom-popup {
   position: fixed;
@@ -654,7 +683,13 @@ input[type="number"] {
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   z-index: 1000;
-  animation: fadeInOut 2s;
+  animation: fadeInOut 6s;
+
+  max-width: max-content;
+
+  @media (max-width: 440px) {
+    font-size: 12px;
+  }
 }
 
 /* Красный попап для ошибок */
@@ -668,8 +703,484 @@ input[type="number"] {
 }
 
 @keyframes fadeInOut {
-  0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-  10% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  90% { opacity: 1; }
-  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+.popup-container {
+  @media (max-width: 440px) {
+    * {
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+}
+
+.custom-popup {
+  text-align: center;
+
+  @media (max-width: 1080px) {
+    width: 351px;
+    font-weight: 400;
+    padding: 10px;
+  }
+}
+
+//
+
+.popup-delete {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  max-width: 50%;
+
+  background-color: #fff;
+  padding: 60px 30px 30px 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  z-index: 10;
+  border-radius: 20px;
+
+  -webkit-box-shadow: 1px 1px 19px 1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 1px 19px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 19px 1px rgba(0, 0, 0, 0.5);
+
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+
+  transition: 0.3s ease-in-out;
+
+  width: 100%;
+
+  @media (max-width: 1080px) {
+    max-width: 70%;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 50%;
+  }
+
+  @media (max-width: 440px) {
+    max-width: 88%;
+  }
+
+  .basket {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: linear-gradient(146deg, rgb(95, 207, 229) 0%, rgb(15, 85, 97) 100%);
+      stroke: linear-gradient(
+        146deg,
+        rgb(95, 207, 229) 0%,
+        rgb(15, 85, 97) 100%
+      );
+      width: 120px;
+    }
+  }
+
+  h4 {
+    max-width: 70%;
+    text-align: center;
+    margin: 0 auto;
+
+    @media (max-width: 440px) {
+      max-width: 90%;
+    }
+  }
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.btn-delete-account {
+  padding: 12px 20px;
+  border-radius: 100px;
+  font-size: 16px;
+  color: #fff;
+
+  margin: 0 auto;
+
+  background: linear-gradient(146deg, rgb(231, 80, 80) 0%, rgb(199, 47, 47) 0%);
+
+  opacity: 0.8;
+
+  @media (min-width: 1080px) {
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 1080px) {
+    opacity: 1;
+  }
+}
+
+.btn-close-delete-popup {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  path {
+    fill: #000;
+  }
+}
+
+.content-profile {
+  margin-top: 20px;
+}
+
+.user-panel-tab-content-title {
+  text-decoration: underline;
+  font-weight: 300;
+}
+
+.aml-sup-b {
+  @media (max-width: 440px) {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .aml-supp {
+    text-decoration: underline;
+  }
+}
+
+//
+
+.content-form {
+  gap: 20px;
+
+  .user-panel-tab-form-inpit input {
+    font-size: 12px !important;
+
+    @media (max-width: 440px) {
+      padding: 16px !important;
+      font-size: 12px !important;
+    }
+  }
+
+  .content-profile {
+  }
+}
+
+.user-panel-tab-content-title {
+  @media (max-width: 440px) {
+    font-size: 16px !important;
+    font-weight: 300 !important;
+  }
+}
+
+.message-content {
+  max-width: 90% !important;
+}
+
+.user-panel-tab-form-inpit span {
+  @media (max-width: 440px) {
+    font-size: 12px !important;
+  }
+}
+
+.have-acc {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  gap: 12px;
+  justify-content: center;
+
+  h4 {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+
+    @media (max-width: 440px) {
+      font-size: 13px;
+    }
+  }
+
+  a {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 300;
+    display: block;
+    text-decoration: underline;
+
+    @media (max-width: 440px) {
+      font-size: 11px;
+    }
+  }
+}
+
+.sign-in-help {
+  margin-top: 30px;
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    margin-top: 10px;
+    justify-content: center;
+
+    li {
+      img {
+        @media (max-width: 440px) {
+          width: 34px;
+        }
+      }
+    }
+  }
+}
+
+.container-xl {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.bottom-send-content-bank-acc-card,
+.bottom-send-content-bank-acc-mail,
+.bottom-send-content-bank-acc-telegram {
+  font-size: 16px;
+  font-weight: 500 !important;
+  position: relative;
+}
+
+.ix-bank {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+//
+
+.footer-copyright {
+  color: #000;
+  text-align: center;
+  padding-bottom: 20px;
+
+  @media (max-width: 1080px) {
+    padding-bottom: 12px;
+  }
+  p {
+    font-size: 14px;
+    text-align: center;
+
+    @media (max-width: 1080px) {
+      font-size: 12px;
+    }
+
+    @media (max-width: 440px) {
+      font-size: 10px;
+    }
+  }
+}
+
+.country-time {
+  background: linear-gradient(
+    86deg,
+    rgb(57, 161, 182) 0%,
+    rgb(20, 103, 117) 100%
+  );
+  padding: 20px;
+
+  display: none;
+
+  &.active {
+    display: block;
+  }
+
+  @media (max-width: 440px) {
+    padding: 14px 10px;
+  }
+
+  p {
+    text-align: center;
+    color: #fff;
+    font-weight: 500;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: block;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    @media (max-width: 1080px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: 440px) {
+      font-size: 10px;
+      padding-left: 0;
+      font-weight: 300;
+      padding-right: 0;
+    }
+  }
+}
+
+//
+
+.brand-parent {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  align-items: center;
+  -webkit-align-items: center;
+
+  margin-bottom: 40px;
+
+  @media (max-width: 440px) {
+    margin-bottom: 20px;
+  }
+}
+.brands-carousel {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  -webkit-align-items: center;
+  animation: animate 70s linear infinite;
+}
+.brands-carousel .slide-content {
+  height: 100%;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+}
+.brands-carousel .slide-content a {
+  height: 100%;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  white-space: nowrap;
+  color: #808080;
+  text-transform: uppercase;
+  padding: 20px;
+  width: 100%;
+  transition: all 0.3s ease-in-out 0s;
+}
+.brands-carousel .slide-content a:hover,
+.brands-carousel .slide-content a:active {
+  @media (min-width: 1080px) {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@-webkit-keyframes animate {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.brands-carousel-usdt {
+  display: flex;
+  gap: 20px;
+}
+
+.brand-parent-usdt {
+  display: flex;
+  gap: 20px;
+  margin-top: 0;
+}
+
+#livechat-eye-catcher img {
+  display: none !important;
+}
+
+.btn-add-count-money {
+  span {
+    @media (max-width: 440px) {
+      font-size: 13px;
+    }
+  }
+
+  svg {
+    @media (max-width: 440px) {
+      height: 18px;
+    }
+  }
+}
+
+.btn-add-count-money {
+  gap: 6px;
+}
+
+@media (max-width: 1440px) {
+  .bg-circle {
+    transform: scale(0.6);
+  }
+
+  .message__logo .logo-message {
+    width: 100px !important;
+  }
+}
+
+.bottom-send-content-bank-user {
+  margin-top: 20px;
+
+  .ixx-bank-name {
+    span {
+      font-size: 16px !important;
+      font-weight: 500 !important;
+
+      @media (max-width: 440px) {
+        font-size: 14px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .bg-circle {
+    transform: scale(0.9);
+  }
+}
+
+.processing-info {
+  color: #11b470;
+  text-decoration: underline;
+
+  @media (max-width: 440px) {
+    font-size: 14px !important;
+  }
 }

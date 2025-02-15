@@ -3,14 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SafeXchange - Криптообменник</title>
+    <title>SafeExhcanger - Криптообменник</title>
 
     <link rel="stylesheet" href="./css/country.css" />
     <link rel="stylesheet" href="./css/swiper.css" />
-    <link rel="stylesheet" href="./css/swiper-min.css" />
+
     <link rel="stylesheet" href="./css/main.css" />
 
     <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon" />
+
+    <style>
+      .header__inner .start {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        gap: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
   </head>
   <body>
     <div class="wrapper">
@@ -23,33 +35,39 @@
                   <img src="./images/logo.png" width="60" alt="logo" />
                 </div>
 
-                <div class="end end-logo">
-                  <h4 class="icon__logo-title">SafeXchange</h4>
-                  <span class="icon__logo-slogan">Exchange for packaging</span>
+                <div class="end">
+                  <h4 class="icon__logo-title">SafeExhcanger</h4>
+                  <span class="icon__logo-slogan">Обмен под защитой</span>
                 </div>
               </a>
 
               <ul class="header__list list-reset">
                 <li class="header__list-item">
-                  <a href="#header" class="header__list-link">Обмен</a>
+                  <a href="./index.html" class="header__list-link">Обмен</a>
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#service" class="header__list-link">Сервисы</a>
+                  <a href="./index.html#service" class="header__list-link"
+                    >Сервисы</a
+                  >
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#locations-block" class="header__list-link"
+                  <a
+                    href="./index.html#locations-block"
+                    class="header__list-link"
                     >Локации</a
                   >
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#how" class="header__list-link">Как это работает?</a>
+                  <a href="./index.html#how" class="header__list-link"
+                    >Как это работает?</a
+                  >
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#!" class="header__list-link">AML</a>
+                  <a href="./aml.html" class="header__list-link">AML</a>
                 </li>
 
                 <div class="header-action-links">
@@ -64,10 +82,181 @@
               </ul>
             </div>
 
-            <div class="end">
-              <ul class="list-reset header__social">
-                <li class="header__social-item">
-                  <a href="#!" class="header__social-link">
+            <div class="end end-tel-header">
+
+              
+              <!-- <div class="header-action-links">
+                <a href="./login.html" class="btn-reset header__btn">Войти</a>
+                <span>|</span>
+                <a href="./reg.html" class="btn-reset header__btn"
+                  >Регистрация</a
+                >
+              </div> -->
+
+              <button class="btn-reset btn-open">
+                <img width="32" src="./images/btn-open.png" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="container">
+          <div class="user__form">
+            <div class="user__form-acc">
+              <button class="btn-reset user__form-accbtn">Войти</button>
+            </div>
+
+            <!-- <div class="btn-close">
+              <svg
+                class="w-6 h-6 text-gray-800 dark:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18 17.94 6M18 18 6.06 6"
+                />
+              </svg>
+            </div> -->
+
+            <form
+              action="./src/login.php"
+              method="post"
+              class="user__form-inputs log-in"
+            >
+              <div class="user__form-content">
+                <span class="user__form-subtitle">E-mail</span>
+                <input
+                  type="email"
+                  placeholder="example@gmail.com"
+                  class="user__form-input input-reset"
+                  name="email"
+                  required
+                />
+              </div>
+
+              <div class="user__form-content">
+                <span class="user__form-subtitle">Пароль</span>
+                <input
+                  type="password"
+                  placeholder="*********"
+                  class="user__form-input input-reset"
+                  name="password"
+                  required
+                />
+              </div>
+
+              <div class="user__form-action">
+                <label class="btn-save-me">
+                  <input type="checkbox" />
+                  <span>Запомнить меня</span>
+                </label>
+
+                <button class="btn-reset btn-forgot-pass">Забыл пароль</button>
+              </div>
+
+              <button type="submit" class="btn-reset form__btn">Войти</button>
+
+              <!-- <div class="sign-in-help">
+                <span>Войти с помощью</span>
+                <ul class="list-reset">
+                  <li>
+                    <a href="#!">
+                      <img src="./images/google.svg" alt="" />
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#!">
+                      <img src="./images/telegram.png" alt="" />
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#!">
+                      <img src="./images/facebook.png" alt="" />
+                    </a>
+                  </li>
+                </ul>
+              </div> -->
+
+              <div class="have-acc">
+                <h4>Нет аккаунта?</h4>
+
+                <a href="./reg.html" class="have-acc-link">
+                  Зарегистрироваться
+                </a>
+              </div>
+            </form>
+
+            <img src="./images/logo.png" class="form-logo" alt="" />
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="footer__inner">
+            <div class="start">
+              <a href="#!" class="icon-logo">
+                <div class="start">
+                  <img src="./images/logo.png" width="60" alt="logo" />
+                </div>
+
+                <div class="end">
+                  <h4 class="icon__logo-title">SafeExhcanger</h4>
+                  <span class="icon__logo-slogan">Обмен под защитой</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="center">
+              <ul class="footer__list list-reset">
+                <li class="footer__list-item">
+                  <a href="./index.html#header" class="footer__list-link"
+                    >Обмен</a
+                  >
+                </li>
+
+                <li class="footer__list-item">
+                  <a href="./index.html#service" class="footer__list-link"
+                    >Сервисы</a
+                  >
+                </li>
+
+                <li class="footer__list-item">
+                  <a
+                    href="./index.html#locations-block"
+                    class="footer__list-link"
+                    >Локации</a
+                  >
+                </li>
+
+                <li class="footer__list-item">
+                  <a href="./index.html#how" class="footer__list-link"
+                    >Как это работает?</a
+                  >
+                </li>
+
+                <li class="footer__list-item">
+                  <a href="./aml.html" class="footer__list-link">AML</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="end end-section">
+              <ul class="list-reset footer__social">
+                <li class="footer__social-item">
+                  <a href="#!" class="footer__social-link">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       x="0px"
@@ -107,214 +296,119 @@
                   </a>
                 </li>
               </ul>
-
-              <div class="header-action-links">
-                <a href="./login.html" class="btn-reset header__btn active"
-                  >Войти</a
-                >
-                <span>|</span>
-                <a href="./reg.html" class="btn-reset header__btn"
-                  >Регистрация</a
-                >
-              </div>
-
-              <button class="btn-reset btn-open">
-                <img width="32" src="./images/btn-open.png" alt="" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main class="main">
-        <div class="container">
-          <div class="user__form">
-            <div class="user__form-acc">
-              <button class="btn-reset user__form-accbtn">Войти</button>
-            </div>
-
-            <!-- <div class="btn-close">
-              <svg
-                class="w-6 h-6 text-gray-800 dark:text-white"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18 17.94 6M18 18 6.06 6"
-                />
-              </svg>
-            </div> -->
-
-            <form action="./src/login.php" method="post" class="user__form-inputs log-in">
-              <div class="user__form-content">
-                  <span class="user__form-subtitle">E-mail</span>
-                  <input type="email" placeholder="example@gmail.com" class="user__form-input input-reset" name="email" required />
-              </div>
-          
-              <div class="user__form-content">
-                  <span class="user__form-subtitle">Пароль</span>
-                  <input type="password" placeholder="*********" class="user__form-input input-reset" name="password" required />
-              </div>
-          
-              <div class="user__form-action">
-                  <label class="btn-save-me">
-                      <input type="checkbox" />
-                      <span>Запомнить меня</span>
-                  </label>
-          
-                  <button class="btn-reset btn-forgot-pass">Забыл пароль</button>
-              </div>
-          
-              <button type="submit" class="btn-reset form__btn">Войти</button>
-          
-              <div class="sign-in-help">
-                  <span>Войти с помощью</span>
-                  <ul class="list-reset">
-                      <li>
-                          <a href="#!">
-                              <img src="./images/google.svg" alt="" />
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-          </form>
-          
-
-            <img src="./images/logo.png" class="form-logo" alt="">
-          </div>
-        </div>
-      </main>
-
-      <footer class="footer">
-        <div class="container">
-          <div class="footer__inner">
-            <div class="start">
-              <a href="#!" class="icon-logo">
-                <div class="start">
-                  <img src="./images/logo.png" width="60" alt="logo" />
-                </div>
-
-                <div class="end">
-                  <h4 class="icon__logo-title">SafeXchange</h4>
-                  <span class="icon__logo-slogan">Обмен под защитой</span>
-                </div>
-              </a>
-            </div>
-
-            <div class="center">
-              <ul class="footer__list list-reset">
-                <li class="footer__list-item">
-                  <a href="#header" class="footer__list-link">Обмен</a>
-                </li>
-
-                <li class="footer__list-item">
-                  <a href="#service" class="footer__list-link">Сервисы</a>
-                </li>
-
-                <li class="footer__list-item">
-                  <a href="#locations-block" class="footer__list-link"
-                    >Локации</a
-                  >
-                </li>
-
-                <li class="footer__list-item">
-                  <a href="#how" class="footer__list-link">Как это работает?</a>
-                </li>
-
-                <li class="footer__list-item">
-                  <a href="#!" class="footer__list-link">AML</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="end end-section">
-              <div class="header-action-links">
+              
+              <!-- <div class="header-action-links">
                 <a href="./login.html" class="btn-reset header__btn">Войти</a>
                 <span>|</span>
                 <a href="./reg.html" class="btn-reset header__btn"
                   >Регистрация</a
                 >
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
       </footer>
     </div>
-
+    <div class="footer-copyright">
+      <p>&copy; 2025 SafeExhcanger. Все права защищены.</p>
+    </div>
     <div class="overlay"></div>
-    <script>
-      document
-        .querySelector(".btn-open")
-        .addEventListener("click", function () {
-          const headerList = document.querySelector(".header__list");
-          const isActive = headerList.classList.contains("active");
-
-          // Переключаем класс и состояние overflow
-          headerList.classList.toggle("active");
-          document.body.style.overflow = isActive ? "visible" : "hidden";
-
-          // Прокручиваем страницу до верха, если открыто меню
-          if (!isActive) {
-            window.scrollTo(0, 0);
-          }
-        });
-    </script>
 
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.querySelector(".user__form-inputs.log-in");
 
-document.addEventListener("DOMContentLoaded", function () {
-    const loginForm = document.querySelector(".user__form-inputs.log-in");
-
-    if (loginForm) {
-        loginForm.addEventListener("submit", function (event) {
+        if (loginForm) {
+          loginForm.addEventListener("submit", function (event) {
             event.preventDefault(); // Останавливаем стандартную отправку формы
 
             let formData = new FormData(loginForm);
 
             fetch("./src/login.php", {
-                method: "POST",
-                body: formData,
+              method: "POST",
+              body: formData,
             })
-            .then(response => response.json())
-            .then(data => {
+              .then((response) => response.json())
+              .then((data) => {
                 if (data.success) {
-                    sessionStorage.setItem("userEmail", formData.get("email"));
-                    showPopup("Авторизация успешна!", "success"); // Показываем зеленый попап
+                  sessionStorage.setItem("userEmail", formData.get("email"));
+                  showPopup("Авторизация успешна!", "success"); // Показываем зеленый попап
 
-                    setTimeout(() => {
-                        window.location.href = data.redirect; // Перенаправляем в кабинет
-                    }, 2000);
+                  setTimeout(() => {
+                    window.location.href = data.redirect; // Перенаправляем в кабинет
+                  }, 2000);
                 } else {
-                    showPopup(data.message, "error"); // Показываем красный попап с ошибкой
+                  showPopup(data.message, "error"); // Показываем красный попап с ошибкой
                 }
-            })
-            .catch(error => console.error("Ошибка:", error));
-        });
-    }
+              })
+              .catch((error) => console.error("Ошибка:", error));
+          });
+        }
 
-    // Функция для показа попапа
-    function showPopup(message, type) {
-        let popup = document.createElement("div");
-        popup.className = `custom-popup ${type}`;
-        popup.textContent = message;
+        function showPopup(message, type) {
+          let popup = document.createElement("div");
+          popup.className = `custom-popup ${type}`;
+          popup.textContent = message;
 
-        document.body.appendChild(popup);
+          document.body.appendChild(popup);
 
-        setTimeout(() => {
+          setTimeout(() => {
             popup.remove();
-        }, 2000);
-    }
-});
-
-
+          }, 2000);
+        }
+      });
     </script>
+
+    <script>
+      // header__list
+
+      const listHeaderItem = document.querySelectorAll(".header__list-item");
+      const menuBtn = document.querySelector(".btn-open");
+      const menu = document.querySelector(".header__list");
+
+      listHeaderItem.forEach((item) => {
+        item.addEventListener("click", function () {
+          // Закрытие меню при клике на пункт списка
+          menu.classList.remove("active");
+          document.body.style.overflow = "auto"; // Восстановление прокрутки
+        });
+      });
+
+      menuBtn.addEventListener("click", () => {
+        // Переключение класса active для открытия/закрытия меню
+        menu.classList.toggle("active");
+
+        if (menu.classList.contains("active")) {
+          // Если меню открыто, скрыть прокрутку
+          document.body.style.overflow = "hidden";
+          window.scrollTo(0, 0); // Перемещение на начало страницы
+        } else {
+          // Если меню закрыто, восстановить прокрутку
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      // Опционально, можно добавлять поведение для закрытия меню при клике вне его
+      document.addEventListener("click", (e) => {
+        if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+          menu.classList.remove("active");
+          document.body.style.overflow = "auto";
+        }
+      });
+    </script>
+
+<!-- Start of LiveChat (www.livechat.com) code -->
+<script>
+  window.__lc = window.__lc || {};
+  window.__lc.license = 19027145;
+  window.__lc.integration_name = "manual_channels";
+  window.__lc.product_name = "livechat";
+  ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
+</script>
+<noscript><a href="https://www.livechat.com/chat-with/19027145/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+<!-- End of LiveChat code -->
+
+
+
   </body>
 </html>
